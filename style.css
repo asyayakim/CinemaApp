@@ -1,30 +1,32 @@
-
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(3, 2fr); 
+    grid-template-columns: repeat(3, 2fr);
     gap: 20px;
     padding: 20px;
 }
+
 .movie-card {
-    width: 250px; 
-    height: 510px; 
+    width: 250px;
+    height: 510px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     cursor: pointer;
     text-align: left;
 }
-.movie-year-genre{
+
+.movie-year-genre {
     color: rgb(141, 141, 141);
 }
+
 .movie-card:hover {
     transform: scale(1.05);
 }
 
 .movie-image img {
-    width: 100%; 
+    width: 100%;
     height: 400px;
-    object-fit: cover; 
+    object-fit: cover;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     pointer-events: none;
     border-radius: 10px;
@@ -64,14 +66,15 @@ div {
 }
 
 #screen {
-   height: 5px;
-   background-color: rgb(72, 72, 76);
-   margin-top: 15px;
-   margin-bottom: 5px;
-   border-top-left-radius: 10px;
-border-top-right-radius: 10px;
+    height: 5px;
+    background-color: rgb(72, 72, 76);
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 
 }
+
 .seat {
     background-color: rgb(72, 72, 76);
     height: 13px;
@@ -99,14 +102,16 @@ border-top-right-radius: 10px;
 .seat:not(.occupied):hover {
     transform: scale(1.2);
     cursor: pointer;
-    border:1px solid aqua;
+    background-color: #d8f16ad6;
 }
+
 .schedule {
     display: flex;
     gap: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 div.language {
     display: flex;
     gap: 10px;
@@ -121,6 +126,7 @@ div.language {
     cursor: pointer;
     pointer-events: auto;
 }
+
 button.timeButton {
     margin: 5px;
     border: 1px solid #4f4f4f;
@@ -136,6 +142,7 @@ button.timeButton {
     color: whitesmoke;
     font-size: 1.1em;
 }
+
 .language.selected {
     border-color: #accae9;
     transform: scale(1.1);
@@ -168,4 +175,15 @@ button.timeButton {
 .date-box.selected {
     border-color: #accae9;
     transform: scale(1.1);
+}
+
+#payment {
+    display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.3);
 }
