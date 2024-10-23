@@ -1,0 +1,99 @@
+.movieDetails {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 20px;
+    margin: 10px auto;
+    background-color: rgb(35, 35, 35);
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+.movieDate {
+    padding: 20px;
+    margin: 10px auto;
+    background-color: rgb(35, 35, 35);
+    border-radius: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+div.language {
+    display: flex;
+    gap: 10px;
+    border: 1px solid #4f4f4f;
+    padding: 8px;
+    text-align: center;
+    margin: 5px;
+    width: 100px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(36, 35, 45);
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+div.language:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  box-shadow:inset 0px 0px 0px 2px #4fff58;
+}
+
+div.timeButton {
+    display: flex;
+    margin: 5px;
+    border: 1px solid #4f4f4f;
+    padding: 10px;
+    text-align: center;
+    width: 70px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(36, 35, 45);
+    cursor: pointer;
+    pointer-events: auto;
+    color: whitesmoke;
+    font-size: 1.1em;
+}
+
+div.timeButton:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  box-shadow:inset 0px 0px 0px 2px #4fff58;
+}
+
+.language.selected {
+    border-color: #accae9;
+    transform: scale(1.1);
+}
+.date-box {
+    border: 1px solid #4f4f4f;
+    padding: 10px;
+    text-align: center;
+    width: 110px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(36, 35, 45);
+    cursor: pointer;
+    pointer-events: auto;
+}
+.date-box:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+    -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+    box-shadow:inset 0px 0px 0px 2px #4fff58;
+}
+
+.date-box .date {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.date-box .weekday,
+.date-box .month {
+    font-size: 1em;
+    color: #757575;
+}
+
+.date-box.selected {
+    border-color: #accae9;
+    transform: scale(1.1);
+}

@@ -32,7 +32,7 @@ function updateViewOrderPage() {
     <div class="row2Tickets">
         <div class="rowInRow1">
             <div name="ticketsAmount+" class="ticketsAmount" onclick='selectTicketsAmount("ticketsAmount+");'>+</div>
-            <div class="ticketsAmountDisplay">${ticketsAmount}</div>
+             <div class="ticketsAmountDisplay">${ticketsAmount}</div>
         </div>
         <div class="rowInRow2">
             <div name="ticketsAmount-" class="ticketsAmount" onclick='selectTicketsAmount("ticketsAmount-");'>-</div>
@@ -88,7 +88,7 @@ function updateViewOrderPage() {
              <span id="selectedCount">- 0</span>
         </div>
         </div>
-        <div id='confirmOrder'>
+        <div class='movieDetails'>
         <div id='totalPrice'>Total Price: $${totalPrice}</div>
         </div>
         <button onclick="goBackToSelectedMovie()">Back to movies</button>

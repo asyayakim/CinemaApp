@@ -4,27 +4,30 @@ function updateViewSelectDate() {
 
     document.getElementById('app').innerHTML = /*HTML*/`
         <h1>Select a date for ${movie.title}</h1>
-        <div>
+        <div class="movieDetails">
             <img src="${movie.imageUrl}" style="height: 150px"/><br/>
-            <b>${movie.title}</b><br/>
+            ${movie.title}<br/>
             ${movie.year}<br/>
             ${movie.genre}<br/>
             Directed by: ${movie.director}
         </div>
+        <div class='movieDate'>
         <div id="selectSchedule">
             <div id="selectedDateDisplay"></div>
             <div id="selectDateBox" onchange="selectDate(event)">
             </div>
         </div>
-            <div>
+        </div>
+            <div class='movieDate'>
     <label>Select your language: </label>
     <div id="selectLanguage"></div>
     </div>
+    <div class='movieDate'>
     <div id='selectTime'></div>
-    <div id='selectSittingPlace'></div>
     <div>
     <label for="selectSittingPlace">Select your movie time: </label>
     ${generateTimeButtons()}
+    </div>
     </div>
     <div>
     <button onclick="goBackToMovies()">Back to movies</button>
