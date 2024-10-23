@@ -25,14 +25,21 @@ function updateViewOrderPage() {
         </div>
     </div>
         <div class="movieOrderDetails">
-            <div class='row1'>
-            <label for="selectTicketsAmount">Select Tickets Amount: </label>
-            ${ticketsAmount}
-            </div>
-            <div class='row2'>
-            <div name='ticketsAmount+' class='ticketsAmount' onclick='selectTicketsAmount("ticketsAmount+");'>+</div>
-            <div name='ticketsAmount-' class='ticketsAmount' onclick='selectTicketsAmount("ticketsAmount-");'>-</div>
-            </div>
+        <div class="layout">
+    <div class="row1Tickets">
+        <label for="selectTicketsAmount">Select Tickets Amount: </label>
+    </div>
+    <div class="row2Tickets">
+        <div class="rowInRow1">
+            <div name="ticketsAmount+" class="ticketsAmount" onclick='selectTicketsAmount("ticketsAmount+");'>+</div>
+            <div class="ticketsAmountDisplay">${ticketsAmount}</div>
+        </div>
+        <div class="rowInRow2">
+            <div name="ticketsAmount-" class="ticketsAmount" onclick='selectTicketsAmount("ticketsAmount-");'>-</div>
+        </div>
+    </div>
+</div>
+
         </div>
         <div id='container' class="movieOrderDetails">
             <b>Select Seats:</b> <br/>
