@@ -52,8 +52,8 @@ function updateViewOrderPage() {
             <div class='seat'></div>
             <div class='seat'></div>
             <div class='seat'></div>
-            <div class='seat selected'></div>
-            <div class='seat selected'></div>
+            <div class='seat'></div>
+            <div class='seat'></div>
             <div class='seat'></div>
             <div class='seat'></div>
             <div class='seat'></div>

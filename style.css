@@ -50,7 +50,7 @@
 
 body {
     background-color: #0b0b12;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 h1 {
@@ -63,46 +63,6 @@ h1 {
 
 div {
     color: whitesmoke;
-}
-
-#screen {
-    height: 5px;
-    background-color: rgb(72, 72, 76);
-    margin-top: 15px;
-    margin-bottom: 5px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-
-}
-
-.seat {
-    background-color: rgb(72, 72, 76);
-    height: 13px;
-    width: 15px;
-    margin: 3px;
-    border-radius: 3px;
-}
-
-.seat.selected {
-    background-color: aqua;
-}
-
-.seat.occupied {
-    background-color: rgb(231, 224, 224);
-}
-
-.seat:nth-of-type(2) {
-    margin-right: 18px;
-}
-
-.seat:nth-last-of-type(3) {
-    margin-right: 18px;
-}
-
-.seat:not(.occupied):hover {
-    transform: scale(1.2);
-    cursor: pointer;
-    background-color: #d8f16ad6;
 }
 
 .schedule {
@@ -177,13 +137,3 @@ button.timeButton {
     transform: scale(1.1);
 }
 
-#payment {
-    display: flex;
-    flex-direction: column;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    margin: auto;
-    border-radius: 40px;
-    background-color: rgba(255, 255, 255, 0.3);
-}

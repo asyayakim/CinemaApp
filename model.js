@@ -28,10 +28,10 @@ const model = {
             paymentMethod: ''
         },
         paymentPage: {
-            secretCode: '',
-            bankCardDetails: '',
+            secretCode: null,
+            bankCardDetails: null,
             cardHolderName: '',
-            cardHolderSurname: '',
+            expirationDate: null,
             cardHolderEmail: '',
         }
     },
