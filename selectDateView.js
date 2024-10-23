@@ -78,7 +78,7 @@ function generateSchedule(startDate) {
         const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
         const month = date.toLocaleDateString('en-US', { month: 'long' });
 
-        const dateButton = document.createElement('button');
+        const dateButton = document.createElement('div');
         dateButton.className = 'date-box';
         dateButton.innerHTML = `
             <div class="date">${day}</div>
@@ -100,7 +100,7 @@ function generateTimeButtons() {
     let buttonsHtml = '';
     for (let i = 0; i < model.movieShowTime.length; i++) {
         const time = model.movieShowTime[i];
-        buttonsHtml += `<button class='timeButton' onclick="selectTime('${time}')">${time}</button>`;
+        buttonsHtml += `<div class='timeButton' onclick="selectTime('${time}')">${time}</div>`;
     }
     return buttonsHtml;
 }

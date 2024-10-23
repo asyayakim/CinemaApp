@@ -87,12 +87,18 @@ div.language {
     pointer-events: auto;
 }
 
-button.timeButton {
+div.language:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  box-shadow:inset 0px 0px 0px 2px #4fff58;
+}
+
+div.timeButton {
+    display: flex;
     margin: 5px;
     border: 1px solid #4f4f4f;
     padding: 10px;
     text-align: center;
-    height: 60px;
     width: 70px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
@@ -103,22 +109,31 @@ button.timeButton {
     font-size: 1.1em;
 }
 
+div.timeButton:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+  box-shadow:inset 0px 0px 0px 2px #4fff58;
+}
+
 .language.selected {
     border-color: #accae9;
     transform: scale(1.1);
 }
-
-
 .date-box {
     border: 1px solid #4f4f4f;
     padding: 10px;
     text-align: center;
-    width: 100px;
+    width: 110px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     background-color: rgb(36, 35, 45);
     cursor: pointer;
     pointer-events: auto;
+}
+.date-box:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+    -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+    box-shadow:inset 0px 0px 0px 2px #4fff58;
 }
 
 .date-box .date {

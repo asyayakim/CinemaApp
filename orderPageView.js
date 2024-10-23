@@ -8,25 +8,33 @@ function updateViewOrderPage() {
     
 
     document.getElementById('app').innerHTML = /*HTML*/`
-        <h1>Place Selrction for ${movie.title}</h1>
-        <div>
-            <img src="${movie.imageUrl}" style="height: 150px"/><br/>
-            <b>${movie.title}</b><br/>
-            ${movie.year}<br/>
-            ${movie.genre}<br/>
-            Directed by: ${movie.director}<br/>
-            <div id="selectedDateDisplay"></div>
-            <b>Selected Language:</b> ${movieLanguage}
-            <br/>
-            <b>Selected Time:</b> ${selectTime}<br/>
-            <div>
-            <label for="selectTicketsAmount">Select Tickets Amount: </label>
-            <button name='ticketsAmount+' type='button' onclick='selectTicketsAmount("ticketsAmount+");'>+</button>
-            <button name='ticketsAmount-' type='button' onclick='selectTicketsAmount("ticketsAmount-");'>-</button>
-            ${ticketsAmount}
-            
+    <h1>Place Selection for ${movie.title}</h1>
+    <div class="movieOrderDetailsLayout">
+    <div class="row1">
+        <img src="${movie.imageUrl}" style="height: 150px"/><br/>
         </div>
-        <div id='container'>
+        <div class="row2">
+        <b>${movie.title}</b><br/>
+        ${movie.year}<br/>
+        ${movie.genre}<br/>
+        Directed by: ${movie.director}<br/>
+        <b>Selected Language:</b> ${movieLanguage}
+        <br/>
+        <b>Selected Time:</b> ${selectTime}<br/>
+        <div id="selectedDateDisplay"></div>
+        </div>
+    </div>
+        <div class="movieOrderDetails">
+            <div class='row1'>
+            <label for="selectTicketsAmount">Select Tickets Amount: </label>
+            ${ticketsAmount}
+            </div>
+            <div class='row2'>
+            <div name='ticketsAmount+' class='ticketsAmount' onclick='selectTicketsAmount("ticketsAmount+");'>+</div>
+            <div name='ticketsAmount-' class='ticketsAmount' onclick='selectTicketsAmount("ticketsAmount-");'>-</div>
+            </div>
+        </div>
+        <div id='container' class="movieOrderDetails">
             <b>Select Seats:</b> <br/>
             <div class= 'row'>
             <div class='seat'></div>
