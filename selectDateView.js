@@ -39,16 +39,14 @@ function updateViewSelectDate() {
 }
 
 function selectDate(event) { 
-    if (!model.inputs.selectDay) {
-        model.inputs.selectDay = {};
-    }
+  
     const selectedDate = event.currentTarget.dataset.date;
     console.log('Button clicked:', selectedDate);
     model.inputs.selectDay.day = selectedDate;
 
     const allButtons = document.querySelectorAll('.date-box');
     allButtons.forEach(button => button.classList.remove('selected'));
-    event.target.classList.add('selected');
+    event.currentTarget.classList.add('selected');
     
     updateSelectedDateDisplay();
 }

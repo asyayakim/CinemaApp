@@ -83,7 +83,7 @@ function updateViewOrderPage() {
             <div class='seat'></div>
             <div class='seat'></div>
             </div>
-            <div id="screen">  </div>
+            <div id="screen"> </div>
             <div class= 'row'>
              <span id="selectedCount">- 0</span>
         </div>

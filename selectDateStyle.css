@@ -75,11 +75,8 @@ div.timeButton:hover {
     background-color: rgb(36, 35, 45);
     cursor: pointer;
     pointer-events: auto;
-}
-.date-box:hover {
-    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
-    -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
-    box-shadow:inset 0px 0px 0px 2px #4fff58;
+    margin-right: 10px;
+    flex-shrink: 0; 
 }
 
 .date-box .date {
@@ -96,4 +93,18 @@ div.timeButton:hover {
 .date-box.selected {
     border-color: #accae9;
     transform: scale(1.1);
+}
+.date-box:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
+    -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
+    box-shadow:inset 0px 0px 0px 2px #4fff58;
+}
+#selectDateBox {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* off horizontal scrolling */
+    white-space: nowrap;
+    padding: 10px 0;
+    width: 100%;
+    scrollbar-width: thin; 
 }
