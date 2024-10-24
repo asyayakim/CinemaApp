@@ -67,7 +67,9 @@
 }
 
 #screen {
-    width: 250px;
+    display: flex;
+    align-items: center;
+    width: 220px;
     height: 5px;
     background-color: rgb(72, 72, 76);
     margin-top: 15px;

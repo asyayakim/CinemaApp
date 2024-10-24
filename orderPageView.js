@@ -85,7 +85,7 @@ function updateViewOrderPage() {
             </div>
             <div id="screen"> </div>
             <div class= 'row'>
-             <span id="selectedCount">- 0</span>
+             <span id="selectedCount"></span>
         </div>
         </div>
         <div class='movieDetails'>
@@ -109,7 +109,6 @@ function totalPriceForOrder() {
     model.inputs.orderpage.totalPrice = totalPrice;
 }
 function selectTicketsAmount(action) {
-    let html = '';
     if (action == 'ticketsAmount+') {
         ticketsAmount++;
 
@@ -127,7 +126,7 @@ function selectTicketsAmount(action) {
 
 function updateSelectedCount() {
     const selectedCount = document.getElementById('selectedCount');
-    selectedCount.textContent = selectedSeatsCount;
+    selectedCount.textContent = `Selected Seats: ${selectedSeatsCount} / ${ticketsAmount}`;
 }
 
 function selectSeats() {

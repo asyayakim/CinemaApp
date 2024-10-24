@@ -145,7 +145,6 @@ function selectLanguageButton(event) {
 
     event.target.classList.add('selected');
 }
-generateLanguageButtons();
 
 function filterOrderPage() {
     //filter order page by language
