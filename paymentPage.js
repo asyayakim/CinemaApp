@@ -12,14 +12,14 @@ function updateViewPaymentPage() {
     </div>
     <div id=column3>
     <div class='paymentPageTextColour'>Card holder*</div><input id="cardHoldername" placeholder="Jonas Jons" oninput="model.inputs.paymentPage.cardHoldername = this.value"><br>
-    <div class='paymentPageTextColour'>Card number*</div><input id="bankCardDetails" placeholder="1111 1111 1111 1111" oninput="model.inputs.paymentPage.bankCardDetails = this.value"><br>
+    <div class='paymentPageTextColour'>Card number*</div><input id="bankCardDetails" min='0' type='number' placeholder="1111 1111 1111 1111" oninput="model.inputs.paymentPage.bankCardDetails = this.value"><br>
     </div>
     <div id=column4>
-    <div id='row1'>
-    <div class='paymentPageTextColour'>Security code*</div><input id="secretCode" placeholder="123" oninput="model.inputs.paymentPage.secretCode = this.value"><br>
+    <div id='rowOne'>
+    <div class='paymentPageTextColour'>Security code*</div><input id="secretCode" min='0' type='number' placeholder="123" oninput="model.inputs.paymentPage.secretCode = this.value"><br>
     </div>
-    <div id='row2'>
-    <div class='paymentPageTextColour'>Expiration date*</div><input id="expirationDate" placeholder="MM/YY" oninput="model.inputs.paymentPage.expirationDAte = this.value"><br>
+    <div id='rowTwo'>
+    <div class='paymentPageTextColour'>Expiration date*</div><input id="expirationDate" min='0' type='number' placeholder="MM/YY" oninput="model.inputs.paymentPage.expirationDAte = this.value"><br>
     </div>
     </div>
     <div id=column5>

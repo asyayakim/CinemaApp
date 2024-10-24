@@ -10,10 +10,10 @@ function updateViewOrderPage() {
     document.getElementById('app').innerHTML = /*HTML*/`
     <h1>Place Selection for ${movie.title}</h1>
     <div class="movieOrderDetailsLayout">
-    <div class="row1">
+    <div class="rowOne">
         <img src="${movie.imageUrl}" style="height: 150px"/><br/>
         </div>
-        <div class="row2">
+        <div class="rowTwo">
         <b>${movie.title}</b><br/>
         ${movie.year}<br/>
         ${movie.genre}<br/>
@@ -43,46 +43,11 @@ function updateViewOrderPage() {
         </div>
         <div id='container' class="movieOrderDetails">
             <b>Select Seats:</b> <br/>
-            <div class= 'row'>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            </div>
-            <div class= 'row'>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            </div>
-            <div class= 'row'>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            </div>
-            <div class= 'row'>
-            <div class='seat'></div>
-            <div class='seat occupied'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            <div class='seat'></div>
-            </div>
+            <div class='row1'>${createSeatsHtml(1)}</div>
+            <div class='row2'>${createSeatsHtml(2)}</div>
+            <div class='row3'>${createSeatsHtml(3)}</div>
+            <div class='row4'>${createSeatsHtml(4)}</div>
+            
             <div id="screen"> </div>
             <div class= 'row'>
              <span id="selectedCount"></span>
@@ -98,6 +63,14 @@ function updateViewOrderPage() {
     updateSelectedCount();
     selectSeats();
     updateSelectedDateDisplay();
+}
+
+function createSeatsHtml(index) {
+    let seatsHtml = '';
+    for (let i = 0; i < 8; i++) {
+        seatsHtml += `<div class='seat'></div>`;
+    }
+    return seatsHtml;
 }
 let totalPrice = 200;
 let selectedSeatsCount = 2;
@@ -120,7 +93,6 @@ function selectTicketsAmount(action) {
     }
     model.inputs.orderpage.ticketsAmount = ticketsAmount;
     totalPriceForOrder();
-
     updateViewOrderPage()
 }
 
@@ -130,8 +102,7 @@ function updateSelectedCount() {
 }
 
 function selectSeats() {
-    const seats = document.querySelectorAll('.row .seat:not(.occupied)');
-   
+    const seats = document.querySelectorAll('.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)');
     seats.forEach(seat => {
         seat.addEventListener('click', () => {
             if (seat.classList.contains('selected')) {
@@ -149,7 +120,7 @@ function selectSeats() {
         });
     });
 }
-selectSeats();
+
 function goBackToSelectedMovie() {
     model.app.currentPage = 'selectDate';
     resetSelectedData();

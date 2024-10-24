@@ -22,12 +22,12 @@
     width: 100%;
 }
 
-#row1 {
+#rowOne {
     flex: 1;
     flex-direction: column;
     margin-right: 10px;
 }
-#row2 {
+#rowTwo{
     flex: 1;
     flex-direction: column;
     margin-left: 10px;
