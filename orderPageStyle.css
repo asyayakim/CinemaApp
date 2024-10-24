@@ -79,7 +79,7 @@
 
 }
 
-.seat {
+.seat1, .seat2, .seat3, .seat4, .seat5, .seat6, .seat7, .seat8 {
     background-color: rgb(72, 72, 76);
     height: 13px;
     width: 15px;
@@ -87,25 +87,23 @@
     border-radius: 3px;
 }
 
-.seat.selected {
+.seat1.selected, .seat2.selected, .seat3.selected, .seat4.selected, .seat5.selected, .seat6.selected, .seat7.selected, .seat8.selected {
     background-color: rgb(0, 202, 202);
 }
-
-.seat.occupied {
+.seat1.occupied, .seat2.occupied, .seat3.occupied, .seat4.occupied, .seat5.occupied, .seat6.occupied, .seat7.occupied, .seat8.occupied {
     background-color: rgb(231, 224, 224);
+    cursor: not-allowed; 
 }
 
-.seat:nth-of-type(2) {
+.seat6 {
     margin-right: 18px;
 }
-
-.seat:nth-last-of-type(3) {
+.seat2 {
     margin-right: 18px;
 }
-
-.seat:not(.occupied):hover {
+.seat1:not(.occupied):hover, .seat2:not(.occupied):hover, .seat3:not(.occupied):hover, .seat4:not(.occupied):hover,
+.seat5:not(.occupied):hover, .seat6:not(.occupied):hover, .seat7:not(.occupied):hover, .seat8:not(.occupied):hover {
     transform: scale(1.2);
-    cursor: pointer;
     -webkit-box-shadow: inset 0px 0px 0px 2px #4fff58;
     -moz-box-shadow: inset 0px 0px 0px 2px #4fff58;
     box-shadow: inset 0px 0px 0px 2px #4fff58;

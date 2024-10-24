@@ -67,8 +67,8 @@ function updateViewOrderPage() {
 
 function createSeatsHtml(index) {
     let seatsHtml = '';
-    for (let i = 0; i < 8; i++) {
-        seatsHtml += `<div class='seat'></div>`;
+    for (let i = 1; i <= 8; i++) {
+        seatsHtml += `<div class='seat seat${i}'></div>`;
     }
     return seatsHtml;
 }
@@ -102,8 +102,10 @@ function updateSelectedCount() {
 }
 
 function selectSeats() {
-    const seats = document.querySelectorAll('.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)');
-    seats.forEach(seat => {
+    const seats = document.querySelectorAll(
+        '.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)'
+    );
+    seats.forEach((seat)=> {
         seat.addEventListener('click', () => {
             if (seat.classList.contains('selected')) {
                 seat.classList.remove('selected');
