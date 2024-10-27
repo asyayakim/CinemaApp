@@ -1,12 +1,10 @@
+preSelectedSeats = model.inputs.orderpage.selectedSeats
 function updateViewOrderPage() {
-    console.log("Stored in model:", model.inputs.selectDay.movieLanguage);
     model.app.currentPage = 'orderPage';
     const movieId = model.inputs.search.movieId;
-    const movieLanguage= model.inputs.selectDay.movieLanguage;
-    const selectTime =model.inputs.selectDay.selectTime;
+    const movieLanguage = model.inputs.selectDay.movieLanguage;
+    const selectTime = model.inputs.selectDay.selectTime;
     const movie = findMovieById(movieId);
-    
-
     document.getElementById('app').innerHTML = /*HTML*/`
     <h1>Place Selection for ${movie.title}</h1>
     <div class="movieOrderDetailsLayout">
@@ -43,7 +41,7 @@ function updateViewOrderPage() {
         </div>
         <div id='container' class="movieOrderDetails">
             <b>Select Seats:</b> <br/>
-            <div class='seatsContainer'>${createSeatsHtml()}</div>
+            <div class='seatsContainer'>${generateRowHtml()}</div>
             
             <div id="screen"> </div>
             <div class= 'row'>
@@ -51,6 +49,7 @@ function updateViewOrderPage() {
         </div>
         </div>
         <div class='movieDetails'>
+        <div id='selectedSeats'></div>
         <div id='totalPrice'>Total Price: $${totalPrice}</div>
         </div>
         <button onclick="goBackToSelectedMovie()">Back to movies</button>
@@ -59,36 +58,43 @@ function updateViewOrderPage() {
     selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
     updateSelectedCount();
     selectSeats();
-    updateSelectedDateDisplay();
+    preSelectSeats();
+}
+function preSelectSeats() {
+    const selectedSeats = model.inputs.orderpage.selectedSeats;
+    if (selectedSeats === undefined) {
+        selectSeat(1, 5);
+        selectSeat(1, 4);
+    } else {
+        for (const seat of selectedSeats) {
+            selectSeat(seat.row, seat.seat);
+        }
+    }
+}
+function selectSeat(row, seat) {
+    const seatElement = document.querySelector(`.seat[row="${row}"][seat="${seat}"]`);
+    seatElement.classList.add('selected');
 }
 
-function createSeatsHtml() {
+function generateRowHtml() {
     const allSeats = model.hall1;
-    let seatsHtml = '';
-    let row1 = [];
-    let row2 = [];
-    let row3 = [];
-    let row4 = [];
-    for (let i = 0; i < allSeats.length; i++) {
-        const seat = allSeats[i];
-        if (seat.row === 1) row1.push(seat);
-        else if (seat.row === 2) row2.push(seat);
-        else if (seat.row === 3) row3.push(seat);
-        else if (seat.row === 4) row4.push(seat);
+    let html = '';
+    for (let row = 1; row <= 4; row++) {
+        html += `<div class='row row${row}'>`;
+        for (let i = 0; i < allSeats.length; i++) {
+            const seat = allSeats[i];
+            if (seat.row === row) {
+                html += /*HTML*/`
+                <div 
+                    class='seat seat${seat.seat}' 
+                    row='${seat.row}' 
+                    seat='${seat.seat}'
+                ></div>`;
+            }
+        }
+        html += '</div>';
     }
-    seatsHtml += generateRowHtml(row1, 1);
-    seatsHtml += generateRowHtml(row2, 2);
-    seatsHtml += generateRowHtml(row3, 3);
-    seatsHtml += generateRowHtml(row4, 4);
-    return seatsHtml;
-}
-function generateRowHtml(rowArray, rowIndex) {
-    let rowHtml = `<div class='row row${rowIndex}'>`;
-    rowArray.forEach(seat => {
-        rowHtml += `<div class='seat seat${seat.seat}'></div>`;
-    });
-    rowHtml += '</div>';
-    return rowHtml;
+    return html;
 }
 let totalPrice = 200;
 let selectedSeatsCount = 2;
@@ -111,6 +117,7 @@ function selectTicketsAmount(action) {
         }
     }
     model.inputs.orderpage.ticketsAmount = ticketsAmount;
+
     totalPriceForOrder();
     updateViewOrderPage()
 }
@@ -124,23 +131,41 @@ function selectSeats() {
     const seats = document.querySelectorAll(
         '.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)'
     );
-    seats.forEach((seat)=> {
+    seats.forEach((seat) => {
+        const row = seat.getAttribute('row');
+        const seatNumber = seat.getAttribute('seat');
         seat.addEventListener('click', () => {
             if (seat.classList.contains('selected')) {
                 seat.classList.remove('selected');
                 selectedSeatsCount--;
+                selectedSeats = selectedSeats.filter(
+                    (selectedSeat) => selectedSeat.row !== row || selectedSeat.seat !== seatNumber)
+                model.inputs.orderpage.selectedSeats = selectedSeats;
+                console.log(model.inputs.orderpage.selectedSeats);
+                console.log(selectedSeats);
             } else {
                 if (selectedSeatsCount < ticketsAmount) {
                     seat.classList.add('selected');
                     selectedSeatsCount++;
-                    
-                    
+                    selectedSeats.push({ row: row, seat: seatNumber });
+                    model.inputs.orderpage.selectedSeats = selectedSeats;
+                    console.log(selectedSeats);
+                    console.log(model.inputs.orderpage.selectedSeats);
                 } else {
                     alert(`You can only select ${ticketsAmount} seats.`);
                 }
             }
             updateSelectedCount();
+            updateSelectedSeatsDisplay();
         });
+    });
+}
+function updateSelectedSeatsDisplay() {
+    const selectedSeatsDisplay = document.getElementById('selectedSeats');
+    selectedSeatsDisplay.innerHTML = '';
+
+    selectedSeats.forEach(({ row, seat }) => {
+        selectedSeatsDisplay.innerHTML += `Row: ${row}, Seat: ${seat} <br/>`;
     });
 }
 
