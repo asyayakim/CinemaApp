@@ -43,10 +43,7 @@ function updateViewOrderPage() {
         </div>
         <div id='container' class="movieOrderDetails">
             <b>Select Seats:</b> <br/>
-            <div class='row1'>${createSeatsHtml(1)}</div>
-            <div class='row2'>${createSeatsHtml(2)}</div>
-            <div class='row3'>${createSeatsHtml(3)}</div>
-            <div class='row4'>${createSeatsHtml(4)}</div>
+            <div class='seatsContainer'>${createSeatsHtml()}</div>
             
             <div id="screen"> </div>
             <div class= 'row'>
@@ -65,16 +62,38 @@ function updateViewOrderPage() {
     updateSelectedDateDisplay();
 }
 
-function createSeatsHtml(index) {
+function createSeatsHtml() {
+    const allSeats = model.hall1;
     let seatsHtml = '';
-    for (let i = 1; i <= 8; i++) {
-        seatsHtml += `<div class='seat seat${i}'></div>`;
+    let row1 = [];
+    let row2 = [];
+    let row3 = [];
+    let row4 = [];
+    for (let i = 0; i < allSeats.length; i++) {
+        const seat = allSeats[i];
+        if (seat.row === 1) row1.push(seat);
+        else if (seat.row === 2) row2.push(seat);
+        else if (seat.row === 3) row3.push(seat);
+        else if (seat.row === 4) row4.push(seat);
     }
+    seatsHtml += generateRowHtml(row1, 1);
+    seatsHtml += generateRowHtml(row2, 2);
+    seatsHtml += generateRowHtml(row3, 3);
+    seatsHtml += generateRowHtml(row4, 4);
     return seatsHtml;
+}
+function generateRowHtml(rowArray, rowIndex) {
+    let rowHtml = `<div class='row row${rowIndex}'>`;
+    rowArray.forEach(seat => {
+        rowHtml += `<div class='seat seat${seat.seat}'></div>`;
+    });
+    rowHtml += '</div>';
+    return rowHtml;
 }
 let totalPrice = 200;
 let selectedSeatsCount = 2;
 let ticketsAmount = 2;
+let selectedSeats = [];
 function totalPriceForOrder() {
     ticketsAmount = model.inputs.orderpage.ticketsAmount;
     totalPrice = ticketsAmount * 100;
@@ -114,6 +133,8 @@ function selectSeats() {
                 if (selectedSeatsCount < ticketsAmount) {
                     seat.classList.add('selected');
                     selectedSeatsCount++;
+                    
+                    
                 } else {
                     alert(`You can only select ${ticketsAmount} seats.`);
                 }

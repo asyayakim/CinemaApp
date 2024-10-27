@@ -18,7 +18,7 @@ const model = {
             dateSpecialFormat: [
                 { weekday: '', mounth: '', day: '' },
             ]
-            
+
         },
         orderpage: {
             movieId: null,
@@ -42,7 +42,7 @@ const model = {
         {
             id: 1,
             title: "Inception",
-            movieLanguage: [   
+            movieLanguage: [
                 ' english', ' norwegian',
             ],
             genre: "Crime, Drama",
@@ -55,8 +55,8 @@ const model = {
         {
             id: 2,
             title: "The Godfather",
-            movieLanguage: [   
-                 ' german', ' norwegian',
+            movieLanguage: [
+                ' german', ' norwegian',
             ],
             year: 1972,
             genre: "Crime, Drama",
@@ -68,8 +68,8 @@ const model = {
         {
             id: 3,
             title: "Pulp Fiction",
-            movieLanguage: [   
-                ' english', ' swedish', 
+            movieLanguage: [
+                ' english', ' swedish',
             ],
             genre: "Crime, Thriller",
             director: "Quentin Tarantino",
@@ -81,7 +81,7 @@ const model = {
         {
             id: 4,
             title: "The Shawshank Redemption",
-            movieLanguage: [   
+            movieLanguage: [
                 ' english', ' swedish', ' french'
             ],
             genre: "Drama",
@@ -94,8 +94,8 @@ const model = {
         {
             id: 5,
             title: "Interstellar",
-            movieLanguage: [   
-                ' english', ' swedish', ' german', 
+            movieLanguage: [
+                ' english', ' swedish', ' german',
             ],
             genre: "Sci-Fi, Drama",
             director: "Christopher Nolan",
@@ -120,44 +120,41 @@ const model = {
         },
     ],
     movieShowTime: [
-        '10:00', '12:00', '14:00', '16:00', 
+        '10:00', '12:00', '14:00', '16:00',
     ],
     hall1: [
-        {
-          row1: 'seat1',
-          row1: 'seat2',
-          row1: 'seat3',
-          row1: 'seat4',
-          row1: 'seat5',
-          row1: 'seat6',
-          row1: 'seat7',
-          row1: 'seat8',
-          row2: 'seat1',
-          row2: 'seat2',
-          row2: 'seat3',
-          row2: 'seat4',
-          row2: 'seat5',
-          row2: 'seat6',
-          row2: 'seat7',
-          row2: 'seat8',
-          row3: 'seat1',
-          row3: 'seat2',
-          row3: 'seat3',
-          row3: 'seat4',
-          row3: 'seat5',
-          row3: 'seat6',
-          row3: 'seat7',
-          row3: 'seat8',
-          row4: 'seat1',
-          row4: 'seat2',
-          row4: 'seat3',
-          row4: 'seat4',
-          row4: 'seat5',
-          row4: 'seat6',
-          row4: 'seat7',
-          row4: 'seat8',
-          
-       }
-   ],
-    
+        { row: 1, seat: 1 },
+        { row: 1, seat: 2 },
+        { row: 1, seat: 3 },
+        { row: 1, seat: 4 },
+        { row: 1, seat: 5 },
+        { row: 1, seat: 6 },
+        { row: 1, seat: 7 },
+        { row: 1, seat: 8 },
+        { row: 2, seat: 1 },
+        { row: 2, seat: 2 },
+        { row: 2, seat: 3 },
+        { row: 2, seat: 4 },
+        { row: 2, seat: 5 },
+        { row: 2, seat: 6 },
+        { row: 2, seat: 7 },
+        { row: 2, seat: 8 },
+        { row: 3, seat: 1 },
+        { row: 3, seat: 2 },
+        { row: 3, seat: 3 },
+        { row: 3, seat: 4 },
+        { row: 3, seat: 5 },
+        { row: 3, seat: 6 },
+        { row: 3, seat: 7 },
+        { row: 3, seat: 8 },
+        { row: 4, seat: 1 },
+        { row: 4, seat: 2 },
+        { row: 4, seat: 3 },
+        { row: 4, seat: 4 },
+        { row: 4, seat: 5 },
+        { row: 4, seat: 6 },
+        { row: 4, seat: 7 },
+        { row: 4, seat: 8 },
+    ],
+
 };
