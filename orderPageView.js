@@ -1,4 +1,8 @@
-preSelectedSeats = model.inputs.orderpage.selectedSeats
+let preSelectedSeats = model.inputs.orderpage.selectedSeats
+let totalPrice = 200;
+let selectedSeatsCount = 2;
+let ticketsAmount = 2;
+let selectedSeats = [];
 function updateViewOrderPage() {
     model.app.currentPage = 'orderPage';
     const movieId = model.inputs.search.movieId;
@@ -59,21 +63,25 @@ function updateViewOrderPage() {
     updateSelectedCount();
     selectSeats();
     preSelectSeats();
+    updateSelectedSeatsDisplay();
 }
 function preSelectSeats() {
     const selectedSeats = model.inputs.orderpage.selectedSeats;
-    if (selectedSeats === undefined) {
-        selectSeat(1, 5);
-        selectSeat(1, 4);
-    } else {
-        for (const seat of selectedSeats) {
-            selectSeat(seat.row, seat.seat);
-        }
-    }
+    if (selectedSeats === undefined) 
+        updateModelSelectSeat(1, 5);
+    updateModelSelectSeat(1, 4);
+    
+
+
 }
-function selectSeat(row, seat) {
+function updateModelSelectSeat(row, seat) {
     const seatElement = document.querySelector(`.seat[row="${row}"][seat="${seat}"]`);
     seatElement.classList.add('selected');
+    selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
+    selectedSeats.push({ row: row, seat: seat });
+    model.inputs.orderpage.selectedSeats = selectedSeats;
+    updateSelectedCount();
+    updateSelectedSeatsDisplay();
 }
 
 function generateRowHtml() {
@@ -96,10 +104,7 @@ function generateRowHtml() {
     }
     return html;
 }
-let totalPrice = 200;
-let selectedSeatsCount = 2;
-let ticketsAmount = 2;
-let selectedSeats = [];
+
 function totalPriceForOrder() {
     ticketsAmount = model.inputs.orderpage.ticketsAmount;
     totalPrice = ticketsAmount * 100;
@@ -163,21 +168,13 @@ function selectSeats() {
 function updateSelectedSeatsDisplay() {
     const selectedSeatsDisplay = document.getElementById('selectedSeats');
     selectedSeatsDisplay.innerHTML = '';
-
-    selectedSeats.forEach(({ row, seat }) => {
-        selectedSeatsDisplay.innerHTML += `Row: ${row}, Seat: ${seat} <br/>`;
-    });
-}
-
-function goBackToSelectedMovie() {
-    model.app.currentPage = 'selectDate';
-    resetSelectedData();
-    updateView();
-}
-
-// nededed to reset selected data when you leave this page
-function resetSelectedData() {
-    model.inputs.selectDay.day = null;
-    model.inputs.selectDay.movieLanguage = '';
-    model.inputs.selectDay.selectTime = '';
+    preSelectedSeats = model.inputs.orderpage.selectedSeats
+    console.log(preSelectedSeats);
+    for (const seat of selectedSeats) {
+        console.log(seat);
+        selectedSeatsDisplay.innerHTML += `
+            <div class='selectedSeat'>Row: ${seat.row}, Seat: ${seat.seat}</div>
+        `;
+    }
+  
 }
