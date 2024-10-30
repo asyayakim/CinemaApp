@@ -1,4 +1,4 @@
-let preSelectedSeats = model.inputs.orderpage.selectedSeats
+
 let totalPrice = 200;
 let selectedSeatsCount = 2;
 let ticketsAmount = 2;
@@ -9,6 +9,7 @@ function updateViewOrderPage() {
     const movieLanguage = model.inputs.selectDay.movieLanguage;
     const selectTime = model.inputs.selectDay.selectTime;
     const movie = findMovieById(movieId);
+    selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
     document.getElementById('app').innerHTML = /*HTML*/`
     <h1>Place Selection for ${movie.title}</h1>
     <div class="movieOrderDetailsLayout">
@@ -60,19 +61,18 @@ function updateViewOrderPage() {
         <button onclick="updateViewPaymentPage()">Continue to payment</button>
     `;
     selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
-    updateSelectedCount();
+
     selectSeats();
     preSelectSeats();
     updateSelectedSeatsDisplay();
+
 }
 function preSelectSeats() {
     const selectedSeats = model.inputs.orderpage.selectedSeats;
-    if (selectedSeats === undefined) 
+    if (selectedSeats === undefined) {
         updateModelSelectSeat(1, 5);
-    updateModelSelectSeat(1, 4);
-    
-
-
+        updateModelSelectSeat(1, 4);
+    }
 }
 function updateModelSelectSeat(row, seat) {
     const seatElement = document.querySelector(`.seat[row="${row}"][seat="${seat}"]`);
@@ -137,8 +137,8 @@ function selectSeats() {
         '.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)'
     );
     seats.forEach((seat) => {
-        const row = seat.getAttribute('row');
-        const seatNumber = seat.getAttribute('seat');
+        const row = parseInt(seat.getAttribute('row'));
+        const seatNumber = parseInt(seat.getAttribute('seat'));
         seat.addEventListener('click', () => {
             if (seat.classList.contains('selected')) {
                 seat.classList.remove('selected');
@@ -146,16 +146,12 @@ function selectSeats() {
                 selectedSeats = selectedSeats.filter(
                     (selectedSeat) => selectedSeat.row !== row || selectedSeat.seat !== seatNumber)
                 model.inputs.orderpage.selectedSeats = selectedSeats;
-                console.log(model.inputs.orderpage.selectedSeats);
-                console.log(selectedSeats);
             } else {
                 if (selectedSeatsCount < ticketsAmount) {
                     seat.classList.add('selected');
                     selectedSeatsCount++;
                     selectedSeats.push({ row: row, seat: seatNumber });
                     model.inputs.orderpage.selectedSeats = selectedSeats;
-                    console.log(selectedSeats);
-                    console.log(model.inputs.orderpage.selectedSeats);
                 } else {
                     alert(`You can only select ${ticketsAmount} seats.`);
                 }
@@ -168,13 +164,15 @@ function selectSeats() {
 function updateSelectedSeatsDisplay() {
     const selectedSeatsDisplay = document.getElementById('selectedSeats');
     selectedSeatsDisplay.innerHTML = '';
-    preSelectedSeats = model.inputs.orderpage.selectedSeats
-    console.log(preSelectedSeats);
+    model.inputs.orderpage.selectedSeats = selectedSeats;
+    console.log(selectedSeats);
     for (const seat of selectedSeats) {
         console.log(seat);
+        console.log(selectedSeats);
+        preSelectSeats();
         selectedSeatsDisplay.innerHTML += `
             <div class='selectedSeat'>Row: ${seat.row}, Seat: ${seat.seat}</div>
         `;
     }
-  
+
 }
