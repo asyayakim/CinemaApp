@@ -49,20 +49,21 @@ function paymentDataCheck() {
     let bankCardDetails = model.inputs.paymentPage.bankCardDetails;
     let secretCode = model.inputs.paymentPage.secretCode;
     let expirationDate = model.inputs.paymentPage.expirationDate;
+    let resultCardHoldername = cardHoldername.toUpperCase();
     clearErrors();
-    if (cardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
+    if (resultCardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
     }
-    if (cardHoldername == '') {
+    if (resultCardHoldername == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
     }
-    if (bankCardDetails.length != 16) {
+    if (bankCardDetails.length != 16 || bankCardDetails == null) {
         showErrorBankCardDetails('bankCardDetails', 'Card number must be 16 digits');
         return false;
     }
-    if (secretCode.length != 3) {
+    if (secretCode.length != 3 || secretCode == null) {
         showErrorSecretCode('secretCode', 'Security code must be 3 digits');
         return false;
     }
@@ -74,6 +75,9 @@ function paymentDataCheck() {
         return false;
     }
     return true;
+}
+function approveSeats() {
+    let selectedSeats = model.inputs.orderpage.selectedSeats;
 }
 
 function validateEmail() {
