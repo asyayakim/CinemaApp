@@ -43,7 +43,6 @@ function updateViewOrderPage() {
         </div>
     </div>
 </div>
-
         </div>
         <div id='container' class="movieOrderDetails">
             <b>Select Seats:</b> <br/>
