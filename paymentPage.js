@@ -3,6 +3,7 @@ function updateViewPaymentPage() {
     model.app.currentPage = 'paymentPage';
     const movieId = model.inputs.search.movieId;
     document.getElementById('app').innerHTML = /*HTML*/`
+    
     <h1>Payment Process</h1>
 <div id="payment">
     <div id="column1">
@@ -43,6 +44,7 @@ function updateViewPaymentPage() {
 </div>
 <button onclick="backToOrderPage()">Back</button>
     `;
+    bookSeats();
 }
 function paymentDataCheck() {
     let cardHoldername = model.inputs.paymentPage.cardHoldername;
@@ -76,8 +78,12 @@ function paymentDataCheck() {
     }
     return true;
 }
-function approveSeats() {
-    let selectedSeats = model.inputs.orderpage.selectedSeats;
+function bookSeats() {
+    seatSelected = model.hall1.filter(seat => seat.selected);
+    for (let i = 0; i < seatSelected.length; i++) {
+        seatSelected[i].occupied = true;
+        seatSelected[i].selected = false;
+    }
 }
 
 function validateEmail() {

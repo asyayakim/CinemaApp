@@ -30,10 +30,9 @@
         updateView();
         function updateView() {
             if (model.app.currentPage == 'search') updateViewMovies();
-            else if (model.app.currentPage == 'selectDate') updateViewSelectDate();
-             else if (model.app.currentPage == 'orderPage') updateViewOrderPage();
-             else if (model.app.currentPage == 'paymentPage') updateViewPaymentPage();
-            else updateView();
+            if (model.app.currentPage == 'selectDate') updateViewSelectDate();
+            if (model.app.currentPage == 'orderPage') updateViewOrderPage();
+            if (model.app.currentPage == 'paymentPage') updateViewPaymentPage();
         }
     </script>
 </body>

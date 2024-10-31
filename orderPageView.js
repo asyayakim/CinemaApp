@@ -3,6 +3,7 @@ let totalPrice = 200;
 let selectedSeatsCount = 2;
 let ticketsAmount = 2;
 let selectedSeats = [];
+console.log(model.hall1);
 function updateViewOrderPage() {
     model.app.currentPage = 'orderPage';
     const movieId = model.inputs.search.movieId;
@@ -71,8 +72,7 @@ function preSelectSeats() {
         if (seat.selected) {
             updateModelSelectSeat(seat.row, seat.seat);
         }
-        updateModelSelectSeat(1, 4);
-        updateModelSelectSeat(1, 5);
+    
     });
 }
 function updateModelSelectSeat(row, seat) {
@@ -96,9 +96,10 @@ function generateRowHtml() {
         for (let i = 0; i < allSeats.length; i++) {
             const seat = allSeats[i];
             if (seat.row === row) {
+                const occupiedClass = seat.occupied ? 'occupied' : '';
                 html += /*HTML*/`
                 <div 
-                    class='seat seat${seat.seat}' 
+                    class='seat seat${seat.seat} ${occupiedClass}' 
                     row='${seat.row}' 
                     seat='${seat.seat}'
                 ></div>`;
