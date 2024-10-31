@@ -61,7 +61,7 @@ function updateViewOrderPage() {
         <button onclick="goBackToSelectedMovie()">Back to movies</button>
         <button onclick="updateViewPaymentPage()">Continue to payment</button>
     `;
-    selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
+
     
     updateSelectedCount();
     updateSelectedSeatsDisplay();
@@ -72,7 +72,6 @@ function preSelectSeats() {
         if (seat.selected) {
             updateModelSelectSeat(seat.row, seat.seat);
         }
-    
     });
 }
 function updateModelSelectSeat(row, seat) {

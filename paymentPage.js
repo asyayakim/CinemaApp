@@ -84,6 +84,19 @@ function bookSeats() {
         seatSelected[i].occupied = true;
         seatSelected[i].selected = false;
     }
+    resetSelectedData();
+}
+function resetSelectedData() {
+    model.inputs.selectDay.day = null;
+    model.inputs.selectDay.movieLanguage = '';
+    model.inputs.selectDay.selectTime = '';
+    model.inputs.selectDay.movieId = null;
+    model.inputs.orderpage.ticketsAmount = 0;
+    model.inputs.orderpage.email = '';
+    model.inputs.orderpage.selectedSeats = [];
+    selectedSeats = [];
+    selectedSeatsCount = 0;
+    totalPrice = 0;
 }
 
 function validateEmail() {
