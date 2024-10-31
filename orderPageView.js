@@ -61,27 +61,29 @@ function updateViewOrderPage() {
         <button onclick="updateViewPaymentPage()">Continue to payment</button>
     `;
     selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
-
-    selectSeats();
-    preSelectSeats();
-    updateSelectedSeatsDisplay();
-
-}
-function preSelectSeats() {
-    const selectedSeats = model.inputs.orderpage.selectedSeats;
-    if (selectedSeats === undefined) {
-        updateModelSelectSeat(1, 5);
-        updateModelSelectSeat(1, 4);
-    }
-}
-function updateModelSelectSeat(row, seat) {
-    const seatElement = document.querySelector(`.seat[row="${row}"][seat="${seat}"]`);
-    seatElement.classList.add('selected');
-    selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
-    selectedSeats.push({ row: row, seat: seat });
-    model.inputs.orderpage.selectedSeats = selectedSeats;
+    
     updateSelectedCount();
     updateSelectedSeatsDisplay();
+selectSeats();
+}
+function preSelectSeats() {
+    model.hall1.forEach(seat => {
+        if (seat.selected) {
+            updateModelSelectSeat(seat.row, seat.seat);
+        }
+    });
+}
+function updateModelSelectSeat(row, seat) {
+    const modelSeat = model.hall1.find(s => s.row === row && s.seat === seat);
+    const seatElement = document.querySelector(`.seat[row="${row}"][seat="${seat}"]`);
+    if (seatElement) {
+        seatElement.classList.add('selected');
+        selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
+        selectedSeats.push({ row, seat });
+        modelSeat.selected = true;
+        model.inputs.orderpage.selectedSeats = selectedSeats;
+        updateSelectedCount();
+    }
 }
 
 function generateRowHtml() {
@@ -133,46 +135,45 @@ function updateSelectedCount() {
 }
 
 function selectSeats() {
-    const seats = document.querySelectorAll(
+    const availableSeats = document.querySelectorAll(
         '.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)'
     );
-    seats.forEach((seat) => {
-        const row = parseInt(seat.getAttribute('row'));
-        const seatNumber = parseInt(seat.getAttribute('seat'));
-        seat.addEventListener('click', () => {
-            if (seat.classList.contains('selected')) {
-                seat.classList.remove('selected');
+    availableSeats.forEach((seatElement) => {
+        const rowNumber = parseInt(seatElement.getAttribute('row'));
+        const seatIndex = parseInt(seatElement.getAttribute('seat'));
+        seatElement.addEventListener('click', () => {
+            const modelSeat = model.hall1.find(seat => seat.row === rowNumber && seat.seat === seatIndex);
+            if (seatElement.classList.contains('selected')) {
+                seatElement.classList.remove('selected');
                 selectedSeatsCount--;
+                modelSeat.selected = false;
                 selectedSeats = selectedSeats.filter(
-                    (selectedSeat) => selectedSeat.row !== row || selectedSeat.seat !== seatNumber)
-                model.inputs.orderpage.selectedSeats = selectedSeats;
+                    selectedSeat => selectedSeat.row !== rowNumber || selectedSeat.seat !== seatIndex
+                );
             } else {
                 if (selectedSeatsCount < ticketsAmount) {
-                    seat.classList.add('selected');
+                    seatElement.classList.add('selected');
                     selectedSeatsCount++;
-                    selectedSeats.push({ row: row, seat: seatNumber });
-                    model.inputs.orderpage.selectedSeats = selectedSeats;
+                    selectedSeats.push({ row: rowNumber, seat: seatIndex });
+                    modelSeat.selected = true;
                 } else {
                     alert(`You can only select ${ticketsAmount} seats.`);
                 }
             }
+            model.inputs.orderpage.selectedSeats = selectedSeats;
             updateSelectedCount();
             updateSelectedSeatsDisplay();
         });
     });
 }
 function updateSelectedSeatsDisplay() {
+    preSelectSeats();
     const selectedSeatsDisplay = document.getElementById('selectedSeats');
     selectedSeatsDisplay.innerHTML = '';
-    model.inputs.orderpage.selectedSeats = selectedSeats;
-    console.log(selectedSeats);
-    for (const seat of selectedSeats) {
-        console.log(seat);
-        console.log(selectedSeats);
-        preSelectSeats();
-        selectedSeatsDisplay.innerHTML += `
-            <div class='selectedSeat'>Row: ${seat.row}, Seat: ${seat.seat}</div>
-        `;
-    }
-
+    model.hall1
+    .filter(seat => seat.selected)
+    .forEach(({ row, seat }) => {
+        selectedSeatsDisplay.innerHTML += `<div class='selectedSeat'>Row: ${row}, Seat: ${seat}</div>`;
+    });
 }
+    
