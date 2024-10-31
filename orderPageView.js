@@ -71,6 +71,8 @@ function preSelectSeats() {
         if (seat.selected) {
             updateModelSelectSeat(seat.row, seat.seat);
         }
+        updateModelSelectSeat(1, 4);
+        updateModelSelectSeat(1, 5);
     });
 }
 function updateModelSelectSeat(row, seat) {
