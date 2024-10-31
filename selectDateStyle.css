@@ -13,7 +13,8 @@
 .movieDate {
     padding: 20px;
     margin: 10px auto;
-    background-color: rgb(35, 35, 35);
+    background-color: rgb(32, 32, 36);
+    color: #e0e0e0;
     border-radius: 20px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
@@ -28,7 +29,8 @@ div.language {
     width: 100px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgb(36, 35, 45);
+    background-color: rgb(32, 32, 36);
+    color: #e0e0e0;
     cursor: pointer;
     pointer-events: auto;
 }
@@ -36,7 +38,7 @@ div.language {
 div.language:hover {
     -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
   -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
-  box-shadow:inset 0px 0px 0px 2px #4fff58;
+  box-shadow: inset 0px 0px 0px 2px #00c4cc;
 }
 
 div.timeButton {
@@ -48,17 +50,17 @@ div.timeButton {
     width: 70px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgb(36, 35, 45);
+    background-color: rgb(32, 32, 36);
+    color: #e0e0e0;
     cursor: pointer;
     pointer-events: auto;
-    color: whitesmoke;
     font-size: 1.1em;
 }
 
 div.timeButton:hover {
     -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
   -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
-  box-shadow:inset 0px 0px 0px 2px #4fff58;
+  box-shadow: inset 0px 0px 0px 2px #00c4cc;
 }
 
 .language.selected {
@@ -72,7 +74,8 @@ div.timeButton:hover {
     width: 110px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgb(36, 35, 45);
+    background-color: rgb(32, 32, 36);
+    color: #e0e0e0;
     cursor: pointer;
     pointer-events: auto;
     margin-right: 10px;
@@ -82,12 +85,13 @@ div.timeButton:hover {
 .date-box .date {
     font-size: 1.5em;
     font-weight: bold;
+    color: #e0e0e0;
 }
 
 .date-box .weekday,
 .date-box .month {
     font-size: 1em;
-    color: #757575;
+    color: #8e8e93;
 }
 
 .date-box.selected {
@@ -97,7 +101,7 @@ div.timeButton:hover {
 .date-box:hover {
     -webkit-box-shadow:inset 0px 0px 0px 2px #4fff58;
     -moz-box-shadow:inset 0px 0px 0px 2px #4fff58;
-    box-shadow:inset 0px 0px 0px 2px #4fff58;
+    box-shadow: inset 0px 0px 0px 2px #00c4cc;
 }
 #selectDateBox {
     display: flex;
