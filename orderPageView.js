@@ -1,7 +1,7 @@
 
 let totalPrice = 200;
-let selectedSeatsCount = 2;
 let ticketsAmount = 2;
+let selectedSeatsCount = 0;
 let selectedSeats = [];
 console.log(model.hall1);
 function updateViewOrderPage() {
@@ -58,13 +58,23 @@ function updateViewOrderPage() {
         <div id='totalPrice'>Total Price: $${totalPrice}</div>
         </div>
         <button onclick="goBackToSelectedMovie()">Back to movies</button>
-        <button onclick="updateViewPaymentPage()">Continue to payment</button>
+        <button onclick="continueToPayment()">Continue to payment</button>
     `;
 
     
     updateSelectedCount();
     updateSelectedSeatsDisplay();
-selectSeats();
+    selectSeats();
+    console.log(ticketsAmount);
+}
+function continueToPayment() {
+    if(selectedSeatsCount !== ticketsAmount) {
+        alert(`Select ${ticketsAmount} seats.`); 
+        return;
+        
+    }
+    model.app.currentPage = 'paymentPage';
+    updateViewPaymentPage();
 }
 function preSelectSeats() {
     model.hall1.forEach(seat => {

@@ -22,9 +22,8 @@ const model = {
         },
         orderpage: {
             movieId: null,
-            ticketsAmount: null,
-            selectSittingPlace: null,
-            email: '',
+            ticketsAmount: 0,
+            totalPrice: null,
             paymentMethod: '',
             selectSeats: [],
         },
