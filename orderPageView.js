@@ -1,10 +1,13 @@
-
 let totalPrice = 200;
-let ticketsAmount = 2;
 let selectedSeatsCount = 0;
 let selectedSeats = [];
 console.log(model.hall1);
 function updateViewOrderPage() {
+    if (model.inputs.orderpage.ticketsAmount === 0) {
+        model.inputs.orderpage.ticketsAmount = 2;
+    }
+    const ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    console.log(model.inputs.orderpage.ticketsAmount);
     model.app.currentPage = 'orderPage';
     const movieId = model.inputs.search.movieId;
     const movieLanguage = model.inputs.selectDay.movieLanguage;
@@ -60,18 +63,17 @@ function updateViewOrderPage() {
         <button onclick="goBackToSelectedMovie()">Back to movies</button>
         <button onclick="continueToPayment()">Continue to payment</button>
     `;
-
-    
     updateSelectedCount();
     updateSelectedSeatsDisplay();
     selectSeats();
     console.log(ticketsAmount);
 }
 function continueToPayment() {
-    if(selectedSeatsCount !== ticketsAmount) {
-        alert(`Select ${ticketsAmount} seats.`); 
+    let ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    if (selectedSeatsCount !== ticketsAmount) {
+        alert(`Select ${ticketsAmount} seats.`);
         return;
-        
+
     }
     model.app.currentPage = 'paymentPage';
     updateViewPaymentPage();
@@ -119,12 +121,15 @@ function generateRowHtml() {
 }
 
 function totalPriceForOrder() {
-    ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    let ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    console.log(model.inputs.orderpage.ticketsAmount);
     totalPrice = ticketsAmount * 100;
     document.getElementById('totalPrice').textContent = `Total Price: $${totalPrice}`;
     model.inputs.orderpage.totalPrice = totalPrice;
 }
 function selectTicketsAmount(action) {
+    let ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    console.log(model.inputs.orderpage.ticketsAmount);
     if (action == 'ticketsAmount+') {
         ticketsAmount++;
 
@@ -136,16 +141,20 @@ function selectTicketsAmount(action) {
     }
     model.inputs.orderpage.ticketsAmount = ticketsAmount;
 
-    totalPriceForOrder();
+    totalPriceForOrder(ticketsAmount);
     updateViewOrderPage()
 }
 
 function updateSelectedCount() {
-    const selectedCount = document.getElementById('selectedCount');
+    let ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    console.log(model.inputs.orderpage.ticketsAmount);
+    let selectedCount = document.getElementById('selectedCount');
     selectedCount.textContent = `Selected Seats: ${selectedSeatsCount} / ${ticketsAmount}`;
 }
 
 function selectSeats() {
+    let ticketsAmount = model.inputs.orderpage.ticketsAmount;
+    console.log(model.inputs.orderpage.ticketsAmount);
     const availableSeats = document.querySelectorAll(
         '.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)'
     );
@@ -182,9 +191,8 @@ function updateSelectedSeatsDisplay() {
     const selectedSeatsDisplay = document.getElementById('selectedSeats');
     selectedSeatsDisplay.innerHTML = '';
     model.hall1
-    .filter(seat => seat.selected)
-    .forEach(({ row, seat }) => {
-        selectedSeatsDisplay.innerHTML += `<div class='selectedSeat'>Row: ${row}, Seat: ${seat}</div>`;
-    });
+        .filter(seat => seat.selected)
+        .forEach(({ row, seat }) => {
+            selectedSeatsDisplay.innerHTML += `<div class='selectedSeat'>Row: ${row}, Seat: ${seat}</div>`;
+        });
 }
-    

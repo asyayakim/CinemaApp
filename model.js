@@ -22,7 +22,7 @@ const model = {
         },
         orderpage: {
             movieId: null,
-            ticketsAmount: 0,
+            ticketsAmount: 2,
             totalPrice: null,
             paymentMethod: '',
             selectSeats: [],
