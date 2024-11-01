@@ -44,7 +44,6 @@ function updateViewPaymentPage() {
 </div>
 <button onclick="backToOrderPage()">Back</button>
     `;
-    bookSeats();
 }
 function paymentDataCheck() {
     let cardHoldername = model.inputs.paymentPage.cardHoldername;
@@ -92,6 +91,7 @@ function resetSelectedData() {
     model.inputs.selectDay.selectTime = '';
     model.inputs.selectDay.movieId = null;
     model.inputs.orderpage.ticketsAmount = 0;
+    console.log(model.inputs.orderpage.ticketsAmount);
     model.inputs.orderpage.email = '';
     model.inputs.orderpage.selectedSeats = [];
     selectedSeats = [];
@@ -149,7 +149,8 @@ function processPayment() {
     if (!paymentDataCheck())
         return;
     alert('Payment Processed');
-    model.app.currentPage = 'orderPage';
+    bookSeats();
+    model.app.currentPage = 'search';
     updateView();
 }
 
