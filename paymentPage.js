@@ -68,7 +68,7 @@ function updateViewPaymentPage() {
 
                 <!-- Security Code -->
                 <div id="column5">
-                    <div class="paymentPageTextColour">Security code*</div>
+                    <div class="paymentPageTextColour">Secret code*</div>
                     <input id="secretCode" type="number" placeholder="123" required 
                            oninput="model.inputs.paymentPage.secretCode = this.value">
                     <span id="secretCodeError" class="error"></span><br>
@@ -98,6 +98,7 @@ function paymentDataCheck() {
     let bankCardDetails = model.inputs.paymentPage.bankCardDetails;
     let secretCode = model.inputs.paymentPage.secretCode;
     let expirationDate = model.inputs.paymentPage.expirationDate;
+    clearErrors();
     if (cardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
