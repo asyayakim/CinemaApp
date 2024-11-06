@@ -5,6 +5,7 @@ function updateViewPaymentPage() {
     document.getElementById('app').innerHTML = /*HTML*/`
     
     <h1>Payment Process</h1>
+    <form>
 <div id="payment">
     <div id="column1">
         <h2 class="paymentPageTextColour">Payment Details</h2>
@@ -14,32 +15,68 @@ function updateViewPaymentPage() {
     </div>
     <div id="column3">
         <div class="paymentPageTextColour">Card holder*</div>
-        <input id="cardHoldername" placeholder="Jonas Jons" oninput="model.inputs.paymentPage.cardHoldername = this.value">
+        <input id="cardHoldername" style="text-transform: uppercase" required placeholder="Jonas Jons" oninput="model.inputs.paymentPage.cardHoldername = this.value">
         <span id="cardHoldernameError" class="error"></span><br>
 
         <div class="paymentPageTextColour">Card number*</div>
-        <input id="bankCardDetails" type="number" placeholder="1111 1111 1111 1111" oninput="model.inputs.paymentPage.bankCardDetails = this.value">
+        <input id="bankCardDetails" type="number" placeholder="1111 1111 1111 1111" required oninput="model.inputs.paymentPage.bankCardDetails = this.value">
         <span id="bankCardDetailsError" class="error"></span><br>
     </div>
     <div id="column4">
         <div id="rowOne">
-            <div class="paymentPageTextColour">Security code*</div>
-            <input id="secretCode" type="number" placeholder="123" oninput="model.inputs.paymentPage.secretCode = this.value">
-            <span id="secretCodeError" class="error"></span><br>
+    <div class="monthsStyle">
+                        <div class="paymentPageTextColour">
+                        <label for="">Exp Month:</label>
+            <select id="expirationMonth" required oninput="model.inputs.paymentPage.expirationMonth = this.value">
+            <option value="">Choose month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <span id="expirationDateError" class="error"></span><br>
+                        </div>
         </div>
+        </div>
+        <div class="monthsStyle">
         <div id="rowTwo">
-            <div class="paymentPageTextColour">Expiration date*</div>
-            <input id="expirationDate" type="text" placeholder="MM/YY" oninput="model.inputs.paymentPage.expirationDate = this.value">
-            <span id="expirationDateError" class="error"></span><br>
+                        <div class="paymentPageTextColour">
+                        <label for="">Exp Year:</label>
+                            <select id="year" required oninput="model.inputs.paymentPage.year = this.value">
+                                <option value="">Choose Year</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                            </select>
+                            <span id="expirationDateError" class="error"></span><br>
+                        </div>
+                        </div>
         </div>
     </div>
     <div id="column5">
+            <div class="paymentPageTextColour">Security code*</div>
+            <input id="secretCode" required type="number" placeholder="123" oninput="model.inputs.paymentPage.secretCode = this.value">
+            <span id="secretCodeError" class="error"></span><br>
+        </div>
+    <div id="column5">
         <div class="paymentPageTextColour">Email address</div>
-        <input id="cardHolderEmail" placeholder="jonasjons@gmail.com" oninput="model.inputs.paymentPage.email = this.value">
+        <input id="cardHolderEmail" required placeholder="jonasjons@gmail.com" oninput="model.inputs.paymentPage.email = this.value">
         <span id="cardHolderEmailError" class="error"></span><br>
     </div>
+
     <div id="column6">
         <button onclick="processPayment()">Confirm Payment ${totalPrice}$</button>
+    </div>
     </div>
 </div>
 <button onclick="backToOrderPage()">Back</button>
@@ -50,17 +87,16 @@ function paymentDataCheck() {
     let bankCardDetails = model.inputs.paymentPage.bankCardDetails;
     let secretCode = model.inputs.paymentPage.secretCode;
     let expirationDate = model.inputs.paymentPage.expirationDate;
-    let resultCardHoldername = cardHoldername.toUpperCase();
     clearErrors();
-    if (resultCardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
+    if (cardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
     }
-    if (resultCardHoldername == '') {
+    if (cardHoldername == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
     }
-    if (bankCardDetails.length != 16 || bankCardDetails == null) {
+    if (bankCardDetails.length != 16 || bankCardDetails.length == null) {
         showErrorBankCardDetails('bankCardDetails', 'Card number must be 16 digits');
         return false;
     }
