@@ -49,7 +49,7 @@ const model = {
             director: "Francis Ford Coppola",
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
             hall: 1,
-            movieShowTime: null,
+            movieShowTime: ['8:00', '18:00'],
         },
         {
             id: 2,
@@ -62,7 +62,7 @@ const model = {
             director: "Francis Ford Coppola",
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
             hall: 1,
-            movieShowTime: null,
+            movieShowTime: ['10:00', '12:00'],
         },
         {
             id: 3,
@@ -75,7 +75,7 @@ const model = {
             year: 1994,
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
             hall: 1,
-            movieShowTime: null,
+            movieShowTime: ['14:00', '16:00'],
         },
         {
             id: 4,
@@ -88,7 +88,7 @@ const model = {
             year: 1994,
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
             hall: 1,
-            movieShowTime: null,
+            movieShowTime: ['20:00'],
         },
         {
             id: 5,
@@ -101,7 +101,7 @@ const model = {
             year: 2014,
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
             hall: 1,
-            movieShowTime: null,
+            movieShowTime: ['22:00'],
         }
     ],
     orderInfo: [
@@ -121,6 +121,7 @@ const model = {
     movieShowTime: [
         '10:00', '12:00', '14:00', '16:00',
     ],
+
     hall1: [
         { row: 1, seat: 1, occupied: false, selected: false },
         { row: 1, seat: 2, occupied: false, selected: false },

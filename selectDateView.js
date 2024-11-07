@@ -98,6 +98,10 @@ function generateSchedule(startDate) {
 }
 updateSelectedDateDisplay();
 function generateTimeButtons() {
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+    model.movieShowTime = movie.movieShowTime;
+
     let buttonsHtml = '';
     for (let i = 0; i < model.movieShowTime.length; i++) {
         const time = model.movieShowTime[i];
