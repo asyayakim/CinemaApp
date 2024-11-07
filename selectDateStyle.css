@@ -3,20 +3,21 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: flex-end;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.063), rgba(0, 0, 0, 0.399));
     padding: 20px;
     margin: 10px auto;
     background-color: rgb(35, 35, 35);
     border-radius: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.802);
     font-family: 'Arial', sans-serif;
 }
 .movieDate {
     padding: 20px;
     margin: 10px auto;
-    background-color: rgb(32, 32, 36);
+    background-color: rgb(35, 35, 35);
     color: #e0e0e0;
     border-radius: 20px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
     font-family: 'Arial', sans-serif;
 }
 div.language {
