@@ -1,7 +1,6 @@
 let totalPrice = 200;
 let selectedSeatsCount = 0;
 let selectedSeats = [];
-console.log(model.hall1);
 function updateViewOrderPage() {
     if (model.inputs.orderpage.ticketsAmount === 0) {
         model.inputs.orderpage.ticketsAmount = 2;
@@ -79,14 +78,25 @@ function continueToPayment() {
     updateViewPaymentPage();
 }
 function preSelectSeats() {
-    model.hall1.forEach(seat => {
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+  
+    const selectedTime = model.inputs.selectDay.selectTime;
+    const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+    console.log(hallShowtime);
+    hallShowtime.seats.forEach(seat => {
         if (seat.selected) {
             updateModelSelectSeat(seat.row, seat.seat);
         }
     });
 }
 function updateModelSelectSeat(row, seat) {
-    const modelSeat = model.hall1.find(s => s.row === row && s.seat === seat);
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+  
+    const selectedTime = model.inputs.selectDay.selectTime;
+    const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+    const modelSeat = hallShowtime.seats.find(s => s.row === row && s.seat === seat);
     const seatElement = document.querySelector(`.seat[row="${row}"][seat="${seat}"]`);
     if (seatElement) {
         seatElement.classList.add('selected');
@@ -99,7 +109,17 @@ function updateModelSelectSeat(row, seat) {
 }
 
 function generateRowHtml() {
-    const allSeats = model.hall1;
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+  
+    const selectedTime = model.inputs.selectDay.selectTime;
+    const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+    if (!hallShowtime) {
+        console.error("Show time not available in hall1 for this movie");
+        return '';
+    }
+
+    const allSeats = hallShowtime.seats;
     let html = '';
     for (let row = 1; row <= 4; row++) {
         html += `<div class='row row${row}'>`;
@@ -162,7 +182,12 @@ function selectSeats() {
         const rowNumber = parseInt(seatElement.getAttribute('row'));
         const seatIndex = parseInt(seatElement.getAttribute('seat'));
         seatElement.addEventListener('click', () => {
-            const modelSeat = model.hall1.find(seat => seat.row === rowNumber && seat.seat === seatIndex);
+            movieId = model.inputs.search.movieId;
+            const movie = findMovieById(movieId);
+          
+            const selectedTime = model.inputs.selectDay.selectTime;
+            const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+            const modelSeat = hallShowtime.seats.find(seat => seat.row === rowNumber && seat.seat === seatIndex);
             if (seatElement.classList.contains('selected')) {
                 seatElement.classList.remove('selected');
                 selectedSeatsCount--;
@@ -190,7 +215,12 @@ function updateSelectedSeatsDisplay() {
     preSelectSeats();
     const selectedSeatsDisplay = document.getElementById('selectedSeats');
     selectedSeatsDisplay.innerHTML = '';
-    model.hall1
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+  
+    const selectedTime = model.inputs.selectDay.selectTime;
+    const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+    hallShowtime.seats
         .filter(seat => seat.selected)
         .forEach(({ row, seat }) => {
             selectedSeatsDisplay.innerHTML += `<div class='selectedSeat'>Row: ${row}, Seat: ${seat}</div>`;
