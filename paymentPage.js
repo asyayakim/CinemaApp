@@ -98,7 +98,6 @@ function paymentDataCheck() {
     let bankCardDetails = model.inputs.paymentPage.bankCardDetails;
     let secretCode = model.inputs.paymentPage.secretCode;
     let expirationDate = model.inputs.paymentPage.expirationDate;
-    clearErrors();
     if (cardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
@@ -122,7 +121,12 @@ function paymentDataCheck() {
     return true;
 }
 function bookSeats() {
-    seatSelected = model.hall1.filter(seat => seat.selected);
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+  
+    const selectedTime = model.inputs.selectDay.selectTime;
+    const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+    seatSelected = hallShowtime.seats.filter(seat => seat.selected);
     for (let i = 0; i < seatSelected.length; i++) {
         seatSelected[i].occupied = true;
         seatSelected[i].selected = false;
