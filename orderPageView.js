@@ -14,7 +14,10 @@ function updateViewOrderPage() {
     const movie = findMovieById(movieId);
     selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
     document.getElementById('app').innerHTML = /*HTML*/`
+    <div class="main">
+    <div class="header">
     <h1>Place Selection for ${movie.title}</h1>
+    </div>
     <div class="movieDetails">
     <div class="rowtwo">
         <img src="${movie.imageUrl}" style="height: 150px"/><br/>
@@ -58,6 +61,7 @@ function updateViewOrderPage() {
         <div class='movieDetails'>
         <div id='selectedSeats'></div>
         <div id='totalPrice'>Total Price: $${totalPrice}</div>
+        </div>
         </div>
         <button onclick="goBackToSelectedMovie()">Back to movies</button>
         <button onclick="continueToPayment()">Continue to payment</button>

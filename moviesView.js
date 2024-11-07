@@ -1,16 +1,20 @@
 function updateViewMovies() {
     document.getElementById('app').innerHTML = /*HTML*/`
-        <h1>Movies in the cinema</h1>
-        <div class="search-container">
-        <div class="searchText">
-        Search:<br/>
-        </div>
-        <div class="search">
-            <input type="text" id="myInput" onkeyup="updateView()" placeholder="Search for movies in the cinema..">
-        </div>
-        </div>
+    <div class="main">
+    <div class="header">
+    <h1>Movies in the cinema</h1>
+    </div>
+    <div class="search-container">
+    <div class="searchText">
+    Search:<br/>
+    </div>
+    <div class="search">
+    <input type="text" id="myInput" onkeyup="updateView()" placeholder="Search for movies in the cinema..">
+    </div>
+    </div>
         <div class="movies-grid">
             ${createMoviesHtml()}
+        </div>
         </div>
     `;
 }

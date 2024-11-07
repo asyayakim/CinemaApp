@@ -4,7 +4,10 @@ function updateViewPaymentPage() {
     const movieId = model.inputs.search.movieId;
 
     document.getElementById('app').innerHTML = /*HTML*/`
+    <div class="main">
+    <div class="header">
         <h1>Payment Process</h1>
+    </div>
         <form onsubmit="processPayment(event)">
             <div id="payment">
                 <div id="column1">
@@ -88,6 +91,7 @@ function updateViewPaymentPage() {
                 </div>
             </div>
         </form>
+    </div>
 <button onclick="backToOrderPage()">Back</button>
     `;
 }

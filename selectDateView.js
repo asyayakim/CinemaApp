@@ -3,7 +3,10 @@ function updateViewSelectDate() {
     const movie = findMovieById(movieId);
 
     document.getElementById('app').innerHTML = /*HTML*/`
+    <div class="main">
+    <div class="header">
         <h1>Select a date for ${movie.title}</h1>
+    </div>
         <div class="movieDetails">
             <img src="${movie.imageUrl}" style="height: 150px"/><br/>
             ${movie.title}<br/>
@@ -30,6 +33,7 @@ function updateViewSelectDate() {
     </div>
     </div>
     <div>
+    </div>
     <button onclick="goBackToMovies()">Back to movies</button>
     `;
 
