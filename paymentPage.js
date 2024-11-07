@@ -31,7 +31,7 @@ function updateViewPaymentPage() {
                 <div id="column4">
                     <div id="rowOne" class="monthsStyle">
                         <div class="paymentPageTextColour">
-                            <label for="expirationMonth">Exp Month:</label>
+                            Exp Month:
                             <select id="expirationMonth" required oninput="model.inputs.paymentPage.expirationMonth = this.value">
                                 <option value="">Choose month</option>
                                 <option value="January">January</option>
@@ -52,8 +52,8 @@ function updateViewPaymentPage() {
                     </div>
                     <div id="rowTwo" class="monthsStyle">
                         <div class="paymentPageTextColour">
-                            <label for="year">Exp Year:</label>
-                            <select id="year" required oninput="model.inputs.paymentPage.year = this.value">
+                            Exp Year:
+                            <select id="expirationYear" required oninput="model.inputs.paymentPage.year = this.value">
                                 <option value="">Choose Year</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -61,7 +61,7 @@ function updateViewPaymentPage() {
                                 <option value="2026">2026</option>
                                 <option value="2027">2027</option>
                             </select>
-                            <span id="yearError" class="error"></span><br>
+                            <span id="expirationYearError" class="error"></span><br>
                         </div>
                     </div>
                 </div>
@@ -98,20 +98,17 @@ function paymentDataCheck() {
     let bankCardDetails = model.inputs.paymentPage.bankCardDetails;
     let secretCode = model.inputs.paymentPage.secretCode;
     let expirationDate = model.inputs.paymentPage.expirationDate;
+
     if (cardHoldername == '' || bankCardDetails == '' || secretCode == '' || expirationDate == '') {
         showErrorCardHolderName('Please fill all the fields');
         return false;
     }
-    if (cardHoldername == '') {
-        showErrorCardHolderName('Please fill all the fields');
-        return false;
-    }
     if (bankCardDetails.length != 16 || bankCardDetails.length == null) {
-        showErrorBankCardDetails('bankCardDetails', 'Card number must be 16 digits');
+        showErrorBankCardDetails('Card number must be 16 digits');
         return false;
     }
     if (secretCode.length != 3 || secretCode == null) {
-        showErrorSecretCode('secretCode', 'Security code must be 3 digits');
+        showErrorSecretCode('Security code must be 3 digits');
         return false;
     }
     
@@ -119,6 +116,7 @@ function paymentDataCheck() {
         return false;
     }
     return true;
+    
 }
 function bookSeats() {
     movieId = model.inputs.search.movieId;
@@ -150,7 +148,7 @@ function resetSelectedData() {
 function validateEmail() {
     let cardHolderEmail = model.inputs.paymentPage.email;
     if (cardHolderEmail === '' || !cardHolderEmail.includes('@') || !cardHolderEmail.includes('.')) {
-        showErrorCardHolderEmail('cardHolderEmail', 'Please enter a valid email');
+        showErrorCardHolderEmail('Please enter a valid email address with @ and .');
         return false;
     }
     return true;
@@ -170,11 +168,6 @@ function showErrorSecretCode(message) {
     document.getElementById('secretCodeError').innerText = message;
 }
 
-function showErrorExpirationDate(message) {
-    document.getElementById('expirationDate').style.border = '1px solid red';
-    document.getElementById('expirationDateError').innerText = message;
-}
-
 function showErrorCardHolderEmail(message) {
     document.getElementById('cardHolderEmail').style.border = '1px solid red';
     document.getElementById('cardHolderEmailError').innerText = message;
@@ -187,15 +180,12 @@ function clearErrors() {
     document.getElementById('bankCardDetailsError').innerText = '';
     document.getElementById('secretCode').style.border = '1px solid #ccc';
     document.getElementById('secretCodeError').innerText = '';
-    document.getElementById('expirationDate').style.border = '1px solid #ccc';
-    document.getElementById('expirationDateError').innerText = '';
     document.getElementById('cardHolderEmail').style.border = '1px solid #ccc';
     document.getElementById('cardHolderEmailError').innerText = '';
 }
         
 function processPayment(event) {
     event.preventDefault();
-
     if (!paymentDataCheck())
         return;
     alert('Payment Processed');
