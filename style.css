@@ -31,7 +31,31 @@
     pointer-events: none;
     border-radius: 10px;
 }
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
 
+.searchText {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: whitesmoke;
+    margin-left: 0; 
+    width: 60%; 
+    font-size: 1.5rem;
+    margin-bottom: 1vh;
+}
+
+.search {
+    border-radius: 10px;
+    width: 60%;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1vh;
+}
 
 .movie-details {
     padding: 20px;
@@ -43,8 +67,13 @@
 }
 
 body {
-    background-color: #0b0b12;
+    background-color: #1b1b2b;
     font-family: 'Arial', sans-serif;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.502), rgb(0, 0, 0), rgb(0, 0, 0)), url(https://cdn.pixabay.com/photo/2024/10/08/02/15/ai-generated-9104182_1280.jpg);
+    background-repeat: no-repeat;
+    /* background-position: 10vh 10vh; */
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 h1 {
@@ -55,6 +84,7 @@ h1 {
     background-color: rgba(0, 0, 0, 0.1);
     font-size: 2rem;
     margin-bottom: 30px;
+    margin-left: 2vh;
 }
 
 div {

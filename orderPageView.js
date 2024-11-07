@@ -15,11 +15,11 @@ function updateViewOrderPage() {
     selectedSeatsCount = document.querySelectorAll('.seat.selected').length;
     document.getElementById('app').innerHTML = /*HTML*/`
     <h1>Place Selection for ${movie.title}</h1>
-    <div class="movieOrderDetailsLayout">
-    <div class="rowOne">
+    <div class="movieDetails">
+    <div class="rowtwo">
         <img src="${movie.imageUrl}" style="height: 150px"/><br/>
         </div>
-        <div class="rowTwo">
+        <div class="rowOne">
         <b>${movie.title}</b><br/>
         ${movie.year}<br/>
         ${movie.genre}<br/>
