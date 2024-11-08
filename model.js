@@ -9,6 +9,7 @@ const model = {
         search: {
             text: '',
             movieId: null,
+            searchMode: false,
         },
         selectDay: {
             movieId: null,
