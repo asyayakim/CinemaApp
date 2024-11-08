@@ -19,13 +19,13 @@ function updateViewPaymentPage() {
                 <!-- Card Holder Name -->
                 <div id="column3">
                     <div class="paymentPageTextColour">Card holder*</div>
-                    <input id="cardHolderName" style="text-transform: uppercase" required placeholder="Jonas Jons" 
+                    <input id="cardHolderName" class="inputPayment" style="text-transform: uppercase" required placeholder="Jonas Jons" 
                     oninput="model.inputs.paymentPage.cardHoldername = this.value">
                     <span id="cardHolderNameError" class="error"></span><br>
 
                     <!-- Card Number -->
                     <div class="paymentPageTextColour">Card number*</div>
-                    <input id="bankCardDetails" type="number" placeholder="1111 1111 1111 1111" required 
+                    <input id="bankCardDetails" type="number" class="inputPayment" placeholder="1111 1111 1111 1111" required 
                            oninput="model.inputs.paymentPage.bankCardDetails = this.value">
                     <span id="bankCardDetailsError" class="error"></span><br>
                 </div>
@@ -72,7 +72,7 @@ function updateViewPaymentPage() {
                 <!-- Security Code -->
                 <div id="column5">
                     <div class="paymentPageTextColour">Secret code*</div>
-                    <input id="secretCode" type="number" placeholder="123" required 
+                    <input id="secretCode" class="inputPayment" type="number" placeholder="123" required 
                            oninput="model.inputs.paymentPage.secretCode = this.value">
                     <span id="secretCodeError" class="error"></span><br>
                 </div>
@@ -80,7 +80,7 @@ function updateViewPaymentPage() {
                 <!-- Email Address -->
                 <div id="column5">
                     <div class="paymentPageTextColour">Email address</div>
-                    <input id="cardHolderEmail" type="email" required placeholder="jonasjons@gmail.com" 
+                    <input id="cardHolderEmail" class="inputPayment" type="email" required placeholder="jonasjons@gmail.com" 
                            oninput="model.inputs.paymentPage.email = this.value">
                     <span id="cardHolderEmailError" class="error"></span><br>
                 </div>

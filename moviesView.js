@@ -9,7 +9,7 @@ function updateViewMovies() {
     Search:<br/>
     </div>
     <div class="search">
-    <input type="text" id="myInputSearch" onkeyup="searchMovies()" placeholder="Search for movies in the cinema..">
+    <input type="text" id="myInputSearch" onkeyup="searchMovies()" autocomplete="off" placeholder="Search for movies in the cinema..">
     </div>
     </div>
         <div class="movies-grid">
@@ -22,11 +22,10 @@ function updateViewMovies() {
 let searchMode = false;
 function createMoviesHtml() {
     const movies = model.movies;
+    const movieGrid = document.querySelector('.movies-grid');
     let html = '';
     for (let i = 0; i < movies.length; i++) {
         const movie = movies[i];
-        if (searchMode === false) {
-
             html += /*HTML*/`
                 <div class="movie-card" onclick="showMovie(${movie.id})">
                     <div class="movie-image">
@@ -39,11 +38,6 @@ function createMoviesHtml() {
                     </div>
                 </div>
             `;
-        }
-        if (searchMode === true) {
-           searchMovies();
-        }
-        
     }
     return html;
 }
@@ -56,7 +50,7 @@ function searchMovies() {
     if (searchString === '' || searchString === null) {
         searchMode = false;
         createMoviesHtml();
-        return;
+        updateViewMovies();
     }
     else {
         searchMode = true;
@@ -83,6 +77,7 @@ function searchMovies() {
                 
             }
         }
+        
     }
    movieGrid.innerHTML = html;
 }
