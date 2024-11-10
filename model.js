@@ -42,7 +42,7 @@ const model = {
             id: 1,
             title: "Inception",
             movieLanguage: [
-                ' english', ' norwegian',
+                'english', 'norwegian',
             ],
             genre: "Crime, Drama",
             year: 2010,
@@ -52,7 +52,7 @@ const model = {
             movieShowTime: ['8:00', '18:00'],
             hall1: [
                 {
-                    movieShowTime: '8:00',
+                    movieShowTime: '8:00', movieLanguage: 'english',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -89,7 +89,7 @@ const model = {
                     ]
                 },
                 {
-                    movieShowTime: '18:00',
+                    movieShowTime: '18:00', movieLanguage: 'norwegian',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -131,7 +131,7 @@ const model = {
             id: 2,
             title: "The Godfather",
             movieLanguage: [
-                ' german', ' norwegian',
+                'german', 'norwegian',
             ],
             year: 1972,
             genre: "Crime, Drama",
@@ -220,7 +220,7 @@ const model = {
             id: 3,
             title: "Pulp Fiction",
             movieLanguage: [
-                ' english', ' swedish',
+                'english', 'swedish',
             ],
             genre: "Crime, Thriller",
             director: "Quentin Tarantino",
@@ -309,7 +309,7 @@ const model = {
             id: 4,
             title: "The Shawshank Redemption",
             movieLanguage: [
-                ' english', ' swedish', ' french'
+                'english', 'swedish', 'french'
             ],
             genre: "Drama",
             director: "Frank Darabont",
@@ -361,7 +361,7 @@ const model = {
             id: 5,
             title: "Interstellar",
             movieLanguage: [
-                ' english', ' swedish', ' german',
+                'english', 'swedish', 'german',
             ],
             genre: "Sci-Fi, Drama",
             director: "Christopher Nolan",
