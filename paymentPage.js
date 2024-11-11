@@ -25,7 +25,7 @@ function updateViewPaymentPage() {
 
                     <!-- Card Number -->
                     <div class="paymentPageTextColour">Card number*</div>
-                    <input id="bankCardDetails" type="number" class="inputPayment" placeholder="1111 1111 1111 1111" required 
+                    <input id="bankCardDetails" type="text" class="inputPayment" placeholder="1111 1111 1111 1111" required 
                            oninput="model.inputs.paymentPage.bankCardDetails = this.value">
                     <span id="bankCardDetailsError" class="error"></span><br>
                 </div>
@@ -72,7 +72,7 @@ function updateViewPaymentPage() {
                 <!-- Security Code -->
                 <div id="column5">
                     <div class="paymentPageTextColour">Secret code*</div>
-                    <input id="secretCode" class="inputPayment" type="number" placeholder="123" required 
+                    <input id="secretCode" class="inputPayment" type="text" placeholder="123" required 
                            oninput="model.inputs.paymentPage.secretCode = this.value">
                     <span id="secretCodeError" class="error"></span><br>
                 </div>
@@ -190,6 +190,7 @@ function clearErrors() {
         
 function processPayment(event) {
     event.preventDefault();
+    clearErrors();
     if (!paymentDataCheck())
         return;
     alert('Payment Processed');

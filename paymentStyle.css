@@ -54,7 +54,7 @@ select {
     width: 100%;
 }
 select:focus {
-    background-color: rgb(255, 243, 240);
+    background-color: rgb(203, 241, 208);
     border-color: rgb(43, 166, 70);
     outline: none;
     box-shadow: 0 0 5px rgba(43, 166, 70, 0.5);
@@ -70,7 +70,7 @@ select:focus {
     transition: 0.3s ease-in-out;
 }
 .inputPayment:focus {
-    background-color: rgb(255, 243, 240);
+    background-color: rgb(203, 241, 208);
     border-color: rgb(43, 166, 70);
     outline: none;
     box-shadow: 0 0 5px rgba(43, 166, 70, 0.5);
@@ -107,10 +107,6 @@ input[type="number"] {
     padding: 8px;
 }
 
-input[type="text"]:focus:invalid,
-input[type="number"]:focus:invalid {
-    border: 1px solid red;
-}
 @media (max-width: 768px) {
     #payment {
         width: 90%;
