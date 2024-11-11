@@ -141,7 +141,7 @@ const model = {
             movieShowTime: ['10:00', '12:00'],
             hall1: [
                 {
-                    movieShowTime: '10:00',
+                    movieShowTime: '10:00', movieLanguage: 'german',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -178,7 +178,7 @@ const model = {
                     ]
                 },
                 {
-                    movieShowTime: '12:00',
+                    movieShowTime: '12:00', movieLanguage: 'norwegian',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -230,7 +230,7 @@ const model = {
             movieShowTime: ['14:00', '16:00'],
             hall1: [
                 {
-                    movieShowTime: '14:00',
+                    movieShowTime: '14:00', movieLanguage: 'english',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -267,7 +267,7 @@ const model = {
                     ]
                 },
                 {
-                    movieShowTime: '16:00',
+                    movieShowTime: '16:00', movieLanguage: 'english',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -319,7 +319,7 @@ const model = {
             movieShowTime: ['20:00'],
             hall1: [
                 {
-                    movieShowTime: '20:00',
+                    movieShowTime: '20:00', movieLanguage: 'english',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },
@@ -371,7 +371,7 @@ const model = {
             movieShowTime: ['22:00'],
             hall1: [
                 {
-                    movieShowTime: '22:00',
+                    movieShowTime: '22:00', movieLanguage: 'english',
                     seats: [
                         { row: 1, seat: 1, occupied: false, selected: false },
                         { row: 1, seat: 2, occupied: false, selected: false },

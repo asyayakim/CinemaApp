@@ -29,7 +29,7 @@ function updateViewSelectDate() {
     <div id='selectTime'></div>
     <div>
     <label for="selectSittingPlace">Select your movie time: </label>
-    ${generateTimeButtons()}
+    
     </div>
     </div>
     <div>
@@ -42,8 +42,8 @@ function updateViewSelectDate() {
     generateSchedule(new Date());
 }
 
-function selectDate(event) { 
-  
+function selectDate(event) {
+
     const selectedDate = event.currentTarget.dataset.date;
     console.log('Button clicked:', selectedDate);
     model.inputs.selectDay.day = selectedDate;
@@ -51,7 +51,7 @@ function selectDate(event) {
     const allButtons = document.querySelectorAll('.date-box');
     allButtons.forEach(button => button.classList.remove('selected'));
     event.currentTarget.classList.add('selected');
-    
+
     updateSelectedDateDisplay();
 }
 
@@ -96,19 +96,19 @@ function generateSchedule(startDate) {
             model.inputs.selectDay.day = date.toISOString();
         }
         dateButton.addEventListener('click', selectDate);
-        
+
         scheduleDiv.appendChild(dateButton);
     }
 }
 updateSelectedDateDisplay();
-function generateTimeButtons() {
-    movieId = model.inputs.search.movieId;
-    const movie = findMovieById(movieId);
-    model.movieShowTime = movie.movieShowTime;
-
+function generateTimeButtons(languageFiltered) {
+    if (!languageFiltered || languageFiltered.length === 0) {
+        return;
+    }
     let buttonsHtml = '';
-    for (let i = 0; i < model.movieShowTime.length; i++) {
-        const time = model.movieShowTime[i];
+    console.log(languageFiltered);
+    for (let i = 0; i < languageFiltered.length; i++) {
+        const time = languageFiltered[i].movieShowTime;
         buttonsHtml += `<div class='timeButton' onclick="selectTime('${time}')">${time}</div>`;
     }
     return buttonsHtml;
@@ -141,25 +141,38 @@ function generateLanguageButtons() {
     languageButtons.forEach(button => {
         button.addEventListener('click', selectLanguageButton);
     });
+    filterLanguage();
 }
 function selectLanguageButton(event) {
     const selectedLanguage = event.target.textContent;
-    console.log("Selected Language:", selectedLanguage); 
+    console.log("Selected Language:", selectedLanguage);
     model.inputs.selectDay.movieLanguage = selectedLanguage;
     console.log("Stored check", model.inputs.selectDay.movieLanguage);
-   
+
     const allButtons = document.querySelectorAll('.language');
     allButtons.forEach(button => button.classList.remove('selected'));
 
     event.target.classList.add('selected');
+    filterLanguage();
 }
 
-function filterOrderPage() {
-    //filter order page by language
-}
+function filterLanguage() {
+    movieId = model.inputs.search.movieId;
+    const movie = findMovieById(movieId);
+    console.log(movie);
+    if (movie && movie.hall1) {
+        const selectedLanguage = model.inputs.selectDay.movieLanguage;
+        const languageFiltered = movie.hall1.filter(h => h.movieLanguage === selectedLanguage);
+        const selectTime = document.getElementById('selectTime');
+        selectTime.innerHTML = '';
 
-function goBackToMovies() {
-    model.app.currentPage = 'search';
-    updateView();
-}
+        const buttonsHtml = generateTimeButtons(languageFiltered);
+        selectTime.innerHTML = buttonsHtml;
+    }
+    }
+
+    function goBackToMovies() {
+        model.app.currentPage = 'search';
+        updateView();
+    }
 
