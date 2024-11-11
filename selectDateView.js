@@ -26,13 +26,8 @@ function updateViewSelectDate() {
     <div id="selectLanguage"></div>
     </div>
     <div class='movieDate'>
-    <div id='selectTime'></div>
-    <div>
     <label for="selectSittingPlace">Select your movie time: </label>
-    
-    </div>
-    </div>
-    <div>
+    <div id='selectTime'></div>
     </div>
     <button onclick="goBackToMovies()">Back to movies</button>
     `;
