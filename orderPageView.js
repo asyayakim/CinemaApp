@@ -85,7 +85,7 @@ function continueToPayment() {
 function preSelectSeats() {
     movieId = model.inputs.search.movieId;
     const movie = findMovieById(movieId);
-  
+
     const selectedTime = model.inputs.selectDay.selectTime;
     const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
     console.log(hallShowtime);
@@ -98,7 +98,7 @@ function preSelectSeats() {
 function updateModelSelectSeat(row, seat) {
     movieId = model.inputs.search.movieId;
     const movie = findMovieById(movieId);
-  
+
     const selectedTime = model.inputs.selectDay.selectTime;
     const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
     const modelSeat = hallShowtime.seats.find(s => s.row === row && s.seat === seat);
@@ -116,45 +116,44 @@ function updateModelSelectSeat(row, seat) {
 function generateRowHtml() {
     movieId = model.inputs.search.movieId;
     const movie = findMovieById(movieId);
-  
+
     const selectedTime = model.inputs.selectDay.selectTime;
     const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
     if (!hallShowtime) {
         console.error("Show time not available in hall1 for this movie");
         return '';
     }
-
-    const allSeats = hallShowtime.seats;
+    let hallRows = hallShowtime.rows;
+    let hallSeats = hallShowtime.seatsPerRow;
     let html = '';
-    for (let row = 1; row <= 4; row++) {
+    for (let row = 1; row <= hallRows; row++) {
         html += `<div class='row row${row}'>`;
-        for (let i = 0; i < allSeats.length; i++) {
-            const seat = allSeats[i];
-            if (seat.row === row) {
-                const occupiedClass = seat.occupied ? 'occupied' : '';
-                html += /*HTML*/`
-                <div 
-                    class='seat seat${seat.seat} ${occupiedClass}' 
-                    row='${seat.row}' 
-                    seat='${seat.seat}'
-                ></div>`;
-            }
+        for (let seat = 1; seat <= hallSeats; seat++) {
+
+            const seatStatus = hallShowtime.seats.find(s => s.row === row && s.seat === seat)
+            console.log(seatStatus);
+            const occupiedClass = seatStatus && seatStatus.occupied ? 'occupied' : '';
+            html += /*HTML*/`
+        <div 
+            class='seat seat${seat} ${occupiedClass}' 
+            row='${row}' 
+            seat='${seat}'
+        ></div>`;
         }
         html += '</div>';
     }
     return html;
-}
+    }
+
 
 function totalPriceForOrder() {
     let ticketsAmount = model.inputs.orderpage.ticketsAmount;
-    console.log(model.inputs.orderpage.ticketsAmount);
     totalPrice = ticketsAmount * 100;
     document.getElementById('totalPrice').textContent = `Total Price: $${totalPrice}`;
     model.inputs.orderpage.totalPrice = totalPrice;
 }
 function selectTicketsAmount(action) {
     let ticketsAmount = model.inputs.orderpage.ticketsAmount;
-    console.log(model.inputs.orderpage.ticketsAmount);
     if (action == 'ticketsAmount+') {
         ticketsAmount++;
 
@@ -172,14 +171,12 @@ function selectTicketsAmount(action) {
 
 function updateSelectedCount() {
     let ticketsAmount = model.inputs.orderpage.ticketsAmount;
-    console.log(model.inputs.orderpage.ticketsAmount);
     let selectedCount = document.getElementById('selectedCount');
     selectedCount.textContent = `Selected Seats: ${selectedSeatsCount} / ${ticketsAmount}`;
 }
 
 function selectSeats() {
     let ticketsAmount = model.inputs.orderpage.ticketsAmount;
-    console.log(model.inputs.orderpage.ticketsAmount);
     const availableSeats = document.querySelectorAll(
         '.row1 .seat:not(.occupied), .row2 .seat:not(.occupied), .row3 .seat:not(.occupied), .row4 .seat:not(.occupied)'
     );
@@ -189,10 +186,18 @@ function selectSeats() {
         seatElement.addEventListener('click', () => {
             movieId = model.inputs.search.movieId;
             const movie = findMovieById(movieId);
-          
             const selectedTime = model.inputs.selectDay.selectTime;
             const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
-            const modelSeat = hallShowtime.seats.find(seat => seat.row === rowNumber && seat.seat === seatIndex);
+            if (!hallShowtime.seats) {
+                hallShowtime.seats = [];
+            }
+            let modelSeat = hallShowtime.seats.find(seat => seat.row === rowNumber && seat.seat === seatIndex);
+            if (!modelSeat) {
+                modelSeat = ({ row: rowNumber, seat: seatIndex, occupied: false, selected: false });
+                hallShowtime.seats.push(modelSeat);
+            }
+            console.log(hallShowtime.seats);
+            console.log(modelSeat);
             if (seatElement.classList.contains('selected')) {
                 seatElement.classList.remove('selected');
                 selectedSeatsCount--;
@@ -222,7 +227,7 @@ function updateSelectedSeatsDisplay() {
     selectedSeatsDisplay.innerHTML = '';
     movieId = model.inputs.search.movieId;
     const movie = findMovieById(movieId);
-  
+
     const selectedTime = model.inputs.selectDay.selectTime;
     const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
     hallShowtime.seats
