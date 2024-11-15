@@ -18,7 +18,8 @@ const model = {
             selectTime: null,
             dateSpecialFormat: [
                 { weekday: '', mounth: '', day: '' },
-            ]
+            ],
+            selectedHall: null,
 
         },
         orderpage: {
@@ -48,27 +49,60 @@ const model = {
             year: 2010,
             director: "Francis Ford Coppola",
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
-            hall: 1,
-            movieShowTime: ['8:00', '18:00'],
-            hall1: [
-                {
-                    movieShowTime: '8:00', rows: 4, seatsPerRow: 8, movieLanguage: 'english',
-                    seats: [
-                        { row: 1, seat: 1, occupied: true, selected: false },
-                        { row: 1, seat: 2, occupied: true, selected: false },
-                        { row: 1, seat: 3, occupied: true, selected: false },
-                       
+            halls: [
+                {hall: 1,
+                    showtimes: [
+                        {
+                            movieShowTime: '8:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'english',
+                            seats: [
+                                { row: 1, seat: 1, occupied: true, selected: false },
+                                { row: 1, seat: 2, occupied: true, selected: false },
+                                { row: 1, seat: 3, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '18:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'norwegian',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
                 },
                 {
-                    movieShowTime: '18:00', rows: 4, seatsPerRow: 8, movieLanguage: 'norwegian',
-                    seats: [
-                        { row: 2, seat: 3, occupied: true, selected: false },
-                        { row: 2, seat: 8, occupied: true, selected: false },
-                        { row: 3, seat: 5, occupied: true, selected: false },
+                    hall: 2,
+                    showtimes: [
+                        {
+                            movieShowTime: '16:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'english',
+                            seats: [
+                                { row: 1, seat: 3, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '20:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'norwegian',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
+                
                 },
-            ]
+            ],
         },
         {
             id: 2,

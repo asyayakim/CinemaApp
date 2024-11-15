@@ -96,20 +96,29 @@ function generateSchedule(startDate) {
     }
 }
 updateSelectedDateDisplay();
-function generateTimeButtons(languageFiltered) {
-    if (!languageFiltered || languageFiltered.length === 0) {
+
+
+function generateTimeButtons(languageFilteredShowtimes) {
+    if (!languageFilteredShowtimes || languageFilteredShowtimes.length === 0) {
         return;
     }
     let buttonsHtml = '';
-    console.log(languageFiltered);
-    for (let i = 0; i < languageFiltered.length; i++) {
-        const time = languageFiltered[i].movieShowTime;
-        buttonsHtml += `<div class='timeButton' onclick="selectTime('${time}')">${time}</div>`;
+    console.log(languageFilteredShowtimes);
+    
+    for (let i = 0; i < languageFilteredShowtimes.length; i++) {
+        const hall = languageFilteredShowtimes[i];
+        for (let j = 0; j < hall.showtimes.length; j++) {
+            const showtime = hall.showtimes[j];
+            const time = showtime.movieShowTime;
+            buttonsHtml += `<div class='timeButton' onclick="selectTime('${time}', '${hall.hall}')">${time}</div>`;
+        }
+
     }
     return buttonsHtml;
 }
-function selectTime(time) {
+function selectTime(time, hall) {
     model.inputs.selectDay.selectTime = time;
+    model.inputs.selectDay.hall = hall;
     updateViewOrderPage();
 }
 
@@ -150,24 +159,32 @@ function selectLanguageButton(event) {
     event.target.classList.add('selected');
     filterLanguage();
 }
-
-function filterLanguage() {
+function findHall() {
     movieId = model.inputs.search.movieId;
     const movie = findMovieById(movieId);
-    console.log(movie);
-    if (movie && movie.hall1) {
+    if (movie && movie.halls) {
         const selectedLanguage = model.inputs.selectDay.movieLanguage;
-        const languageFiltered = movie.hall1.filter(h => h.movieLanguage === selectedLanguage);
+        const languageFilteredShowtimes = movie.halls.map(hall => ({
+            hall: hall.hall,
+            showtimes: hall.showtimes.filter(showtime => showtime.language === selectedLanguage)
+        })).filter(hall => hall.showtimes.length > 0);
+        return languageFilteredShowtimes;
+    }
+}
+
+function filterLanguage() {
+    const languageFilteredShowtimes = findHall();
+        console.log(languageFilteredShowtimes);
         const selectTime = document.getElementById('selectTime');
         selectTime.innerHTML = '';
 
-        const buttonsHtml = generateTimeButtons(languageFiltered);
+        const buttonsHtml = generateTimeButtons(languageFilteredShowtimes);
         selectTime.innerHTML = buttonsHtml;
     }
-    }
 
-    function goBackToMovies() {
-        model.app.currentPage = 'search';
-        updateView();
-    }
+
+function goBackToMovies() {
+    model.app.currentPage = 'search';
+    updateView();
+}
 

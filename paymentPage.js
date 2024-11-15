@@ -123,11 +123,11 @@ function paymentDataCheck() {
     
 }
 function bookSeats() {
-    movieId = model.inputs.search.movieId;
-    const movie = findMovieById(movieId);
-  
+    const movieId = model.inputs.search.movieId;
     const selectedTime = model.inputs.selectDay.selectTime;
-    const hallShowtime = movie.hall1.find(h => h.movieShowTime === selectedTime);
+    const movie = findMovieById(movieId);
+    const hall = movie.halls.find(h => h.hall);
+    const hallShowtime = hall.showtimes.find(showtime => showtime.movieShowTime === selectedTime);
     seatSelected = hallShowtime.seats.filter(seat => seat.selected);
     for (let i = 0; i < seatSelected.length; i++) {
         seatSelected[i].occupied = true;
