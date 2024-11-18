@@ -68,6 +68,7 @@ function updateViewOrderPage() {
         <button onclick="goBackToSelectedMovie()">Back to movies</button>
         <button onclick="continueToPayment()">Continue to payment</button>
     `;
+    updateSelectedSeatsDisplay();
     totalPriceForOrder();
     updateSelectedCount();
     selectSeats();

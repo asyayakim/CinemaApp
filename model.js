@@ -50,7 +50,8 @@ const model = {
             director: "Francis Ford Coppola",
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
             halls: [
-                {hall: 1,
+                {
+                    hall: 1,
                     showtimes: [
                         {
                             movieShowTime: '8:00',
@@ -100,7 +101,7 @@ const model = {
                             ]
                         }
                     ]
-                
+
                 },
             ],
         },
@@ -116,20 +117,61 @@ const model = {
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
             hall: 1,
             movieShowTime: ['10:00', '12:00'],
-            hall1: [
+            halls: [
                 {
-                    movieShowTime: '10:00', rows: 4, seatsPerRow: 8, movieLanguage: 'german',
-                    seats: [
-                        { row: 3, seat: 7, occupied: true, selected: false },
-                        { row: 4, seat: 7, occupied: true, selected: false },
+                    hall: 1,
+                    showtimes: [
+                        {
+                            movieShowTime: '10:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'german',
+                            seats: [
+                                { row: 1, seat: 1, occupied: true, selected: false },
+                                { row: 1, seat: 2, occupied: true, selected: false },
+                                { row: 1, seat: 5, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '12:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'norwegian',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
                 },
                 {
-                    movieShowTime: '12:00', rows: 4, seatsPerRow: 8,movieLanguage: 'norwegian',
-                    seats: [
-                                        ]
+                    hall: 2,
+                    showtimes: [
+                        {
+                            movieShowTime: '18:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'german',
+                            seats: [
+                                { row: 1, seat: 3, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '23:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'german',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
+                    ]
+
                 },
-            ]
+            ],
         },
         {
             id: 3,
@@ -143,23 +185,61 @@ const model = {
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/3/3b/Pulp_Fiction_%281994%29_poster.jpg",
             hall: 1,
             movieShowTime: ['14:00', '16:00'],
-            hall1: [
+            halls: [
                 {
-                    movieShowTime: '14:00', rows: 4, seatsPerRow: 8, movieLanguage: 'english',
-                    seats: [
-                        { row: 2, seat: 3, occupied: true, selected: false },
-                        { row: 2, seat: 4, occupied: true, selected: false },
+                    hall: 1,
+                    showtimes: [
+                        {
+                            movieShowTime: '14:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'english',
+                            seats: [
+                                { row: 4, seat: 1, occupied: true, selected: false },
+                                { row: 1, seat: 6, occupied: true, selected: false },
+                                { row: 1, seat: 7, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '16:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'swedish',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
                 },
                 {
-                    movieShowTime: '16:00', rows: 4, seatsPerRow: 8, movieLanguage: 'english',
-                    seats: [
-                        { row: 2, seat: 2, occupied: true, selected: false },
-                        { row: 2, seat: 3, occupied: true, selected: false },
-                        { row: 4, seat: 8, occupied: true, selected: false }
+                    hall: 2,
+                    showtimes: [
+                        {
+                            movieShowTime: '12:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'english',
+                            seats: [
+                                { row: 1, seat: 3, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '21:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'swedish',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
+
                 },
-            ]
+            ],
         },
         {
             id: 4,
@@ -173,20 +253,56 @@ const model = {
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
             hall: 1,
             movieShowTime: ['20:00'],
-            hall1: [
+            halls: [
                 {
-                    movieShowTime: '20:00', rows: 4, seatsPerRow: 8, movieLanguage: 'english',
-                    seats: [
-                        { row: 2, seat: 3, occupied: true, selected: false },
+                    hall: 1,
+                    showtimes: [
+                        {
+                            movieShowTime: '20:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'norwegian',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
                 },
-            ]
+                {
+                    hall: 2,
+                    showtimes: [
+                        {
+                            movieShowTime: '10:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'english',
+                            seats: [
+                                { row: 1, seat: 3, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '12:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'french',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
+                    ]
+
+                },
+            ],
         },
         {
             id: 5,
             title: "Interstellar",
             movieLanguage: [
-                'english', 'swedish', 'german',
+                'english', 'swedish',
             ],
             genre: "Sci-Fi, Drama",
             director: "Christopher Nolan",
@@ -194,15 +310,50 @@ const model = {
             imageUrl: "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
             hall: 1,
             movieShowTime: ['22:00'],
-            hall1: [
+            halls: [
                 {
-                    movieShowTime: '22:00', rows: 4, seatsPerRow: 8, movieLanguage: 'english',
-                    seats: [
-                        { row: 2, seat: 3, occupied: true, selected: false },
-
+                    hall: 1,
+                    showtimes: [
+                        {
+                            movieShowTime: '22:00',
+                            rows: 4,
+                            seatsPerRow: 8,
+                            language: 'english',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
                     ]
                 },
-            ]
+                {
+                    hall: 2,
+                    showtimes: [
+                        {
+                            movieShowTime: '08:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'english',
+                            seats: [
+                                { row: 1, seat: 3, occupied: true, selected: false },
+                            ]
+                        },
+                        {
+                            movieShowTime: '20:00',
+                            rows: 7,
+                            seatsPerRow: 12,
+                            language: 'norwegian',
+                            seats: [
+                                { row: 2, seat: 3, occupied: true, selected: false },
+                                { row: 2, seat: 8, occupied: true, selected: false },
+                                { row: 3, seat: 5, occupied: true, selected: false },
+                            ]
+                        }
+                    ]
+
+                },
+            ],
         }
     ],
     orderInfo: [
