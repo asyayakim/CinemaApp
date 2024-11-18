@@ -261,7 +261,7 @@ const model = {
                             movieShowTime: '20:00',
                             rows: 4,
                             seatsPerRow: 8,
-                            language: 'norwegian',
+                            language: 'swedish',
                             seats: [
                                 { row: 2, seat: 3, occupied: true, selected: false },
                                 { row: 2, seat: 8, occupied: true, selected: false },
@@ -343,7 +343,7 @@ const model = {
                             movieShowTime: '20:00',
                             rows: 7,
                             seatsPerRow: 12,
-                            language: 'norwegian',
+                            language: 'swedish',
                             seats: [
                                 { row: 2, seat: 3, occupied: true, selected: false },
                                 { row: 2, seat: 8, occupied: true, selected: false },
