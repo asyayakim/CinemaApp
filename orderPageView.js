@@ -70,7 +70,6 @@ function updateViewOrderPage() {
     `;
     totalPriceForOrder();
     updateSelectedCount();
-    updateSelectedSeatsDisplay();
     selectSeats();
 }
 function continueToPayment() {
@@ -87,8 +86,10 @@ function preSelectSeats() {
     const movieId = model.inputs.search.movieId;
     const selectedTime = model.inputs.selectDay.selectTime;
     const movie = findMovieById(movieId);
-    const hall = movie.halls.find(h => h.hall);
+    const selectedHall = model.inputs.selectDay.hall;
+    const hall = movie.halls.find(h => h.hall === parseInt(selectedHall));
     const hallShowtime = hall.showtimes.find(showtime => showtime.movieShowTime === selectedTime);
+    console.log(hallShowtime);
     hallShowtime.seats.forEach(seat => {
         if (seat.selected) {
             updateModelSelectSeat(seat.row, seat.seat);
@@ -118,14 +119,16 @@ function generateRowHtml() {
     const movieId = model.inputs.search.movieId;
     const selectedTime = model.inputs.selectDay.selectTime;
     const movie = findMovieById(movieId);
-    const hall = movie.halls.find(h => h.hall);
+    const selectedHall = model.inputs.selectDay.hall;
+    const hall = movie.halls.find(h => h.hall === parseInt(selectedHall));
     const hallShowtime = hall.showtimes.find(showtime => showtime.movieShowTime === selectedTime);
     const hallRows = hallShowtime.rows;
-    const hallSeats = hallShowtime.seatsPerRow;
     let html = '';
+    const seatsPerRow = hallShowtime.seatsPerRow;
+    console.log(seatsPerRow);
     for (let row = 1; row <= hallRows; row++) {
         html += `<div class='row row${row}'>`;
-        for (let seat = 1; seat <= hallSeats; seat++) {
+        for (let seat = 1; seat <= seatsPerRow; seat++) {
             const seatStatus = hallShowtime.seats.find(s => s.row === row && s.seat === seat);
             const occupiedClass = seatStatus && seatStatus.occupied ? 'occupied' : '';
             html += /*HTML*/`
@@ -135,10 +138,13 @@ function generateRowHtml() {
                     seat='${seat}'
                 ></div>`;
         }
+
         html += '</div>';
     }
+
     return html;
 }
+
 
 
 
@@ -226,10 +232,10 @@ function updateSelectedSeatsDisplay() {
     const selectedSeatsDisplay = document.getElementById('selectedSeats');
     selectedSeatsDisplay.innerHTML = '';
     const movieId = model.inputs.search.movieId;
-    const selectedHall = model.inputs.selectDay.hall;
     const selectedTime = model.inputs.selectDay.selectTime;
     const movie = findMovieById(movieId);
-    const hall = movie.halls.find(h => h.hall);
+    const selectedHall = model.inputs.selectDay.hall;
+    const hall = movie.halls.find(h => h.hall === parseInt(selectedHall));
     const hallShowtime = hall.showtimes.find(showtime => showtime.movieShowTime === selectedTime);
    
     hallShowtime.seats
